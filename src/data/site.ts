@@ -8,8 +8,8 @@ export const siteConfig = {
 
   author: {
     name: 'Ben Shoemaker',
-    email: 'ben.shoemaker.xyz@gmail.com', // Replace with actual email
-    calendarUrl: 'https://calendar.app.google/9bkLGHVSQdJ8j5uv9', // Replace with actual booking link
+    email: 'ben.shoemaker.xyz@gmail.com',
+    calendarUrl: 'https://calendar.app.google/9bkLGHVSQdJ8j5uv9',
   },
 
   social: {
