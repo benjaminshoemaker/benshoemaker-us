@@ -36,5 +36,5 @@ const fullTitle = Astro.url.pathname === '/' ? title : `${title} | ${siteConfig.
 <meta name="twitter:image" content={ogImageUrl} />
 
 {jsonLd && (
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 )}
