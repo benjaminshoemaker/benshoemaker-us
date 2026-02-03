@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = (await getCollection('writing'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Writing" description="Essays and notes on AI-assisted development, product building, and the craft of software.">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold text-text-primary mb-4">Writing</h1>
+      <p class="text-lg text-text-muted">
+        Essays and notes on AI-assisted development, product building, and the craft of software.
+      </p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p class="text-text-muted">Posts coming soon.</p>
+    ) : (
+      <div class="space-y-2">
+        {posts.map(post => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            type={post.data.type}
+            tags={post.data.tags}
+            description={post.data.description}
+            slug={post.id}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
