@@ -1,0 +1,62 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TagBadge from '../components/TagBadge.astro';
+import { siteConfig } from '../data/site';
+
+interface Props {
+  title: string;
+  date: Date;
+  type: 'essay' | 'note';
+  tags: string[];
+  description: string;
+}
+
+const { title, date, type, tags, description } = Astro.props;
+
+const postUrl = `${siteConfig.url}${Astro.url.pathname}`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  datePublished: date.toISOString(),
+  url: postUrl,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  image: `${siteConfig.url}${siteConfig.ogImage}`,
+  author: {
+    '@type': 'Person',
+    name: siteConfig.author.name,
+    url: `${siteConfig.url}/about`,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: siteConfig.author.name,
+  },
+};
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd} ogType="article">
+  <article class="max-w-prose mx-auto px-4 py-12">
+    <header class="mb-8">
+      <div class="flex items-center gap-3 text-sm text-text-muted mb-2">
+        <time datetime={date.toISOString()}>
+          {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-accent-light text-accent-text">
+          {type}
+        </span>
+      </div>
+      <h1 class="text-3xl font-bold text-text-primary mb-4">{title}</h1>
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {tags.map(tag => <TagBadge tag={tag} />)}
+        </div>
+      )}
+    </header>
+    <div class="prose prose-stone prose-lg max-w-none">
+      <slot />
+    </div>
+    <footer class="mt-12 pt-6 border-t border-border text-sm text-text-muted">
+      Written by <a href="/about" class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{siteConfig.author.name}</a>
+    </footer>
+  </article>
+</BaseLayout>

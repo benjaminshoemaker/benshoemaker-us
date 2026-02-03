@@ -1,0 +1,38 @@
+---
+import TagBadge from './TagBadge.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  type: 'essay' | 'note';
+  tags: string[];
+  description: string;
+  slug: string;
+}
+
+const { title, date, type, tags, description, slug } = Astro.props;
+---
+
+<article class="group">
+  <a href={`/writing/${slug}`} class="block p-4 -mx-4 rounded-lg hover:bg-surface-muted transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+    <div class="flex items-center gap-3 text-sm text-text-muted mb-2">
+      <time datetime={date.toISOString()}>
+        {date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+      </time>
+      <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-accent-light text-accent-text">
+        {type}
+      </span>
+    </div>
+    <h3 class="text-lg font-semibold text-text-primary group-hover:text-accent transition-colors mb-2">
+      {title}
+    </h3>
+    <p class="text-text-body text-sm line-clamp-2 mb-3">
+      {description}
+    </p>
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tags.map(tag => <TagBadge tag={tag} />)}
+      </div>
+    )}
+  </a>
+</article>
