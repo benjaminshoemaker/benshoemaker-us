@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import GitHubStats from '../components/GitHubStats.astro';
+import { projects } from '../data/projects';
+import { fetchGitHubStats } from '../lib/github';
+
+const githubStats = await fetchGitHubStats('benjaminshoemaker');
+---
+
+<BaseLayout title="Projects" description="A curated selection of projects I've built, including AI coding tools and analytics platforms.">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold text-text-primary mb-4">Projects</h1>
+      <p class="text-lg text-text-muted">
+        A curated selection of projects I've built.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      {projects.map(project => (
+        <ProjectCard
+          name={project.name}
+          description={project.description}
+          techStack={project.techStack}
+          githubUrl={project.githubUrl}
+          liveUrl={project.liveUrl}
+        />
+      ))}
+    </div>
+
+    <GitHubStats stats={githubStats} />
+  </div>
+</BaseLayout>
