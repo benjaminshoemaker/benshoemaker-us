@@ -2,14 +2,14 @@
   "commands": {
     "test": "",
     "lint": "",
-    "typecheck": "",
-    "build": "",
+    "typecheck": "npx astro check",
+    "build": "npm run build",
     "coverage": ""
   },
   "devServer": {
-    "command": "",
-    "url": "",
-    "startupSeconds": 10
+    "command": "npm run dev",
+    "url": "http://localhost:4321",
+    "startupSeconds": 5
   },
   "auth": {
     "strategy": "none",
