@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { siteConfig } from '../data/site';
+import headshot from '../assets/images/headshot.jpeg';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: siteConfig.author.name,
+  url: siteConfig.url,
+  jobTitle: 'AI-Assisted Development Practitioner',
+  sameAs: [
+    siteConfig.social.github,
+    siteConfig.social.linkedin,
+    siteConfig.social.twitter,
+  ],
+};
+---
+
+<BaseLayout title="About" description="Learn more about Ben Shoemaker — AI-assisted development practitioner, builder, and consultant." jsonLd={jsonLd}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold text-text-primary mb-4">About Me</h1>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
+      <div class="md:col-span-1">
+        <Image
+          src={headshot}
+          alt="Ben Shoemaker"
+          class="w-full max-w-xs mx-auto md:mx-0 rounded-lg"
+          width={320}
+          height={320}
+        />
+      </div>
+
+      <div class="md:col-span-2 prose prose-stone max-w-none">
+        <p class="text-lg text-text-body">
+          I'm Ben Shoemaker — a builder, consultant, and practitioner in AI-assisted development.
+        </p>
+        <p class="text-text-body mt-4">
+          I've spent years at the intersection of software engineering and emerging AI tooling. My focus is on understanding how developers can work alongside AI coding assistants to ship faster and better — not by replacing human judgment, but by augmenting it.
+        </p>
+        <p class="text-text-body mt-4">
+          I believe we're at the beginning of a fundamental shift in how software gets built. The teams that figure out effective human-AI collaboration will outpace those that don't. I help people and organizations navigate this transition.
+        </p>
+        <p class="text-text-body mt-4">
+          When I'm not building or writing about AI development workflows, you can find me exploring new tools, contributing to open source, or thinking about what comes next.
+        </p>
+      </div>
+    </div>
+
+    <section class="border-t border-border pt-8">
+      <h2 class="text-xl font-semibold text-text-primary mb-4">Connect</h2>
+      <div class="flex flex-col gap-4">
+        <SocialLinks size="md" />
+        <p class="text-text-muted text-sm">
+          Or find me on{' '}
+          <a
+            href={siteConfig.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          >
+            LinkedIn
+          </a>{' '}
+          for professional updates.
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
