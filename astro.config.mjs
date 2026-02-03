@@ -7,6 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://benshoemaker.us',
   vite: {
+    // @ts-ignore - Vite version mismatch between @tailwindcss/vite and astro's bundled vite
     plugins: [tailwindcss()],
   },
   integrations: [sitemap()],
