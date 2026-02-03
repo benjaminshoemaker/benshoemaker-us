@@ -1,10 +1,102 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import PostCard from '../components/PostCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { siteConfig } from '../data/site';
+import { projects } from '../data/projects';
+
+const recentPosts = (await getCollection('writing'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+
+const featuredProjects = projects.filter(p => p.featured);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: siteConfig.author.name,
+    url: siteConfig.url,
+    sameAs: [
+      siteConfig.social.github,
+      siteConfig.social.linkedin,
+      siteConfig.social.twitter,
+    ],
+  },
+};
 ---
 
-<BaseLayout title={siteConfig.title} description={siteConfig.description}>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h1 class="text-3xl font-bold text-text-primary">Coming soon</h1>
-  </div>
+<BaseLayout title={siteConfig.title} description={siteConfig.description} jsonLd={jsonLd}>
+  {/* Hero Section */}
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="text-4xl sm:text-5xl font-bold text-text-primary mb-6">
+      Hi, I'm Ben.
+    </h1>
+    <p class="text-xl text-text-body max-w-2xl mb-8">
+      I build things with AI-assisted development tools. Currently exploring how developers can ship faster
+      and better by working alongside AI coding assistants.
+    </p>
+    <SocialLinks />
+  </section>
+
+  {/* Recent Writing */}
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold text-text-primary">Recent Writing</h2>
+      <a href="/writing" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        View all &rarr;
+      </a>
+    </div>
+    {recentPosts.length > 0 ? (
+      <div class="space-y-2">
+        {recentPosts.map(post => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            type={post.data.type}
+            tags={post.data.tags}
+            description={post.data.description}
+            slug={post.id}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-text-muted">Posts coming soon.</p>
+    )}
+  </section>
+
+  {/* Featured Projects */}
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold text-text-primary">Featured Projects</h2>
+      <a href="/projects" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        View all &rarr;
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {featuredProjects.map(project => (
+        <ProjectCard
+          name={project.name}
+          description={project.description}
+          techStack={project.techStack}
+          githubUrl={project.githubUrl}
+          liveUrl={project.liveUrl}
+        />
+      ))}
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border">
+    <p class="text-text-muted">
+      Looking for help with AI-assisted development?
+      <a href="/services" class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        Check out my services
+      </a>.
+    </p>
+  </section>
 </BaseLayout>
