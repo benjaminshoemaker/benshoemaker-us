@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { siteConfig } from '../data/site';
+
+const services = [
+  {
+    title: 'AI Development Workflow Setup',
+    description: 'Get your team set up with AI-assisted development tools and workflows. I help you integrate coding assistants like Claude, Cursor, and GitHub Copilot into your existing processes — with custom prompts, context management strategies, and best practices tailored to your stack.',
+  },
+  {
+    title: 'Product & Technical Advising',
+    description: 'Strategic guidance on building AI-powered products and features. From architecture decisions to implementation patterns, I help you navigate the rapidly evolving landscape of AI tooling and make informed technical choices.',
+  },
+  {
+    title: 'Custom Tool Building',
+    description: 'Need a specialized AI development tool for your team? I build custom integrations, automation scripts, and workflows that leverage the latest AI capabilities — from code generation pipelines to intelligent code review systems.',
+  },
+];
+---
+
+<BaseLayout title="Services" description="AI-assisted development consulting — workflow setup, technical advising, and custom tool building.">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold text-text-primary mb-4">Services</h1>
+      <p class="text-lg text-text-muted max-w-2xl">
+        I help teams ship faster and better by integrating AI-assisted development into their workflows.
+      </p>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-text-primary mb-6">What I Offer</h2>
+      <div class="grid grid-cols-1 gap-6">
+        {services.map(service => (
+          <ServiceCard title={service.title} description={service.description} />
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-text-primary mb-4">Why Work With Me</h2>
+      <div class="prose prose-stone max-w-none">
+        <p class="text-text-body">
+          I've spent years building with AI coding assistants — not just using them, but understanding how to get the most out of them. I know what works, what doesn't, and how to avoid the common pitfalls that slow teams down.
+        </p>
+        <p class="text-text-body mt-4">
+          My approach is practical and results-focused. I don't sell hype — I help you build real systems that make your developers more productive.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-t border-border pt-8">
+      <h2 class="text-xl font-semibold text-text-primary mb-4">Get in Touch</h2>
+      <p class="text-text-body mb-6">
+        Interested in working together? Let's talk about how I can help your team.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href={`mailto:${siteConfig.author.email}`}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-text font-medium rounded-lg hover:bg-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Send an Email
+        </a>
+        <a
+          href={siteConfig.author.calendarUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-text-primary font-medium rounded-lg hover:bg-surface-raised transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          Book a Call
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

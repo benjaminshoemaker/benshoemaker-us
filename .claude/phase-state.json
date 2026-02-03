@@ -1,7 +1,7 @@
 {
   "currentPhase": 3,
-  "status": "READY",
-  "startedAt": null,
+  "status": "IN_PROGRESS",
+  "startedAt": "2026-02-03T04:59:30Z",
   "completedAt": null,
   "checkpointedAt": null,
   "executionMode": "default",
@@ -10,11 +10,5 @@
     "3.2.A": { "status": "PENDING" },
     "3.3.A": { "status": "PENDING" }
   },
-  "checkpoint": null,
-  "prepResults": {
-    "headshot_image": "PASS",
-    "placeholder_urls": "PASS",
-    "build": "PASS",
-    "typecheck": "PASS"
-  }
+  "checkpoint": null
 }
