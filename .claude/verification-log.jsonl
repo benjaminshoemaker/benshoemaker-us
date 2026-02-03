@@ -6,3 +6,5 @@
 {"timestamp":"2026-02-03T04:31:30Z","scope":"phase-checkpoint","phase":1,"status":"PASSED","automated":{"build":"PASS","typecheck":"PASS"},"manual":{"navigation":"PASS","colors":"PASS"},"codex":"SKIPPED"}
 {"timestamp":"2026-02-03T04:32:00Z","scope":"phase-prep","phase":2,"check":"pre-phase-setup","status":"PASS","evidence":"No blocking setup items"}
 {"timestamp":"2026-02-03T04:50:40Z","scope":"phase-checkpoint","phase":2,"status":"PASSED","automated":{"build":"PASS","typecheck":"PASS","html":"PASS"},"manual":{"writing_feed":"PASS","home_hero":"PASS","typography":"PASS"},"codex":"SKIPPED"}
+{"timestamp":"2026-02-03T04:54:10Z","scope":"phase-prep","phase":3,"check":"pre-phase-setup","status":"BLOCKED","evidence":{"headshot":"missing","placeholder_urls":"present in site.ts"}}
+{"timestamp":"2026-02-03T04:59:10Z","scope":"phase-prep","phase":3,"check":"pre-phase-setup","status":"PASS","evidence":{"headshot":"src/assets/images/headshot.jpeg","urls_updated":true}}
