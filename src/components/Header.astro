@@ -1,0 +1,56 @@
+---
+import { siteConfig } from '../data/site';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-border bg-surface">
+  <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-lg font-bold text-text-primary hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        {siteConfig.name}
+      </a>
+
+      {/* Desktop navigation */}
+      <div class="hidden md:flex items-center gap-6">
+        {siteConfig.nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                ? 'text-accent'
+                : 'text-text-muted hover:text-text-primary',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+
+      {/* Mobile navigation */}
+      <details class="md:hidden relative">
+        <summary class="flex items-center justify-center w-10 h-10 text-text-muted hover:text-text-primary cursor-pointer list-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </summary>
+        <div class="absolute right-0 top-full mt-2 w-48 bg-surface-raised border border-border rounded-lg shadow-lg py-2 z-50">
+          {siteConfig.nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'block px-4 py-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+                currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                  ? 'text-accent bg-accent-light'
+                  : 'text-text-body hover:bg-surface-muted',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </details>
+    </div>
+  </nav>
+</header>

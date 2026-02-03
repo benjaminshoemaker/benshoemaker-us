@@ -1,0 +1,17 @@
+---
+import SocialLinks from './SocialLinks.astro';
+import { siteConfig } from '../data/site';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-surface mt-auto">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <SocialLinks size="sm" />
+      <p class="text-sm text-text-muted">
+        &copy; {currentYear} {siteConfig.name}
+      </p>
+    </div>
+  </div>
+</footer>
