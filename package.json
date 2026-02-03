@@ -7,8 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "watch-drafts": "node scripts/watch-drafts.mjs",
-    "publish-doc": "node scripts/convert-docx.mjs"
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",
@@ -18,8 +17,7 @@
     "@astrojs/check": "^0.9.6",
     "@tailwindcss/typography": "^0.5.0",
     "@tailwindcss/vite": "^4.0.0",
-    "chokidar": "^5.0.0",
-    "gray-matter": "^4.0.3",
+    "husky": "^9.1.7",
     "mammoth": "^1.11.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.0.0",
