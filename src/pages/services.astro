@@ -71,36 +71,38 @@ const services = [
       </ul>
     </section>
 
-    <section class="border-t border-border pt-8">
-      <h2 class="text-xl font-semibold text-text-primary mb-4">Get in Touch</h2>
-      <p class="text-text-body mb-6">
-        I'm building my own ventures and selectively taking on consulting and advisory work. Open to the right opportunity — full-time, fractional, or partnership — with teams doing interesting work in AI, data, or dev tooling.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a
-          href={`mailto:${siteConfig.author.email}`}
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-text font-medium rounded-lg hover:bg-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <polyline points="22,6 12,13 2,6" />
-          </svg>
-          Send an Email
-        </a>
-        <a
-          href={siteConfig.author.calendarUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-text-primary font-medium rounded-lg hover:bg-surface-raised transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-            <line x1="16" y1="2" x2="16" y2="6" />
-            <line x1="8" y1="2" x2="8" y2="6" />
-            <line x1="3" y1="10" x2="21" y2="10" />
-          </svg>
-          Book a Call
-        </a>
+    <section class="pt-8">
+      <div class="rounded-2xl bg-accent-light border border-accent/20 p-6 sm:p-8">
+        <h2 class="text-xl font-semibold text-text-primary mb-4">Get in Touch</h2>
+        <p class="text-text-body mb-6">
+          I'm building my own ventures and selectively taking on consulting and advisory work. Open to the right opportunity — full-time, fractional, or partnership — with teams doing interesting work in AI, data, or dev tooling.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href={`mailto:${siteConfig.author.email}`}
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            Send an Email
+          </a>
+          <a
+            href={siteConfig.author.calendarUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-text-primary font-medium rounded-lg hover:bg-surface-raised transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            Book a Call
+          </a>
+        </div>
       </div>
     </section>
   </div>

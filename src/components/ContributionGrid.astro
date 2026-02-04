@@ -5,7 +5,24 @@ interface Props {
   calendar: ContributionCalendar | null;
 }
 
-const { calendar } = Astro.props;
+const { calendar: rawCalendar } = Astro.props;
+
+// Trim calendar to only show weeks from July 2025 onward
+const CUTOFF = '2025-07-01';
+
+const calendar = rawCalendar ? (() => {
+  const filteredWeeks = rawCalendar.weeks.filter(
+    (week) => week.contributionDays[week.contributionDays.length - 1].date >= CUTOFF,
+  );
+  const filteredMonths = rawCalendar.months.filter(
+    (month) => month.firstDay >= CUTOFF,
+  );
+  const totalContributions = filteredWeeks.reduce(
+    (sum, week) => sum + week.contributionDays.reduce((s, d) => s + d.contributionCount, 0),
+    0,
+  );
+  return { weeks: filteredWeeks, months: filteredMonths, totalContributions };
+})() : null;
 
 function getLevel(count: number): number {
   if (count === 0) return 0;
@@ -19,7 +36,7 @@ function getLevel(count: number): number {
 {calendar && (
   <div class="contribution-grid-wrapper">
     <p class="text-sm text-text-muted mb-3">
-      <span class="font-semibold text-text-primary">{calendar.totalContributions.toLocaleString()}</span> contributions in the last year
+      <span class="font-semibold text-text-primary">{calendar.totalContributions.toLocaleString()}</span> contributions since July 2025
     </p>
 
     {/* Month labels */}
@@ -47,7 +64,7 @@ function getLevel(count: number): number {
         class="contribution-grid"
         style={`grid-template-columns: repeat(${calendar.weeks.length}, 1fr);`}
         role="img"
-        aria-label={`Contribution graph: ${calendar.totalContributions} contributions in the last year`}
+        aria-label={`Contribution graph: ${calendar.totalContributions} contributions since July 2025`}
       >
         {calendar.weeks.map((week) =>
           week.contributionDays.map((day) => (
@@ -94,7 +111,7 @@ function getLevel(count: number): number {
     border-radius: 2px;
   }
 
-  .level-0 { background-color: var(--color-contrib-0); }
+  .level-0 { background-color: var(--color-surface-raised); }
   .level-1 { background-color: var(--color-contrib-1); }
   .level-2 { background-color: var(--color-contrib-2); }
   .level-3 { background-color: var(--color-contrib-3); }
