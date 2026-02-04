@@ -35,8 +35,8 @@ const jsonLd = {
 ---
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd} ogType="article">
-  <article class="max-w-prose mx-auto px-4 py-12">
-    <header class="mb-8">
+  <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="max-w-prose mb-8">
       <div class="flex items-center gap-3 text-sm text-text-muted mb-2">
         <time datetime={date.toISOString()}>
           {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -52,10 +52,10 @@ const jsonLd = {
         </div>
       )}
     </header>
-    <div class="prose prose-stone prose-lg max-w-none">
+    <div class="prose prose-stone prose-lg max-w-prose">
       <slot />
     </div>
-    <footer class="mt-12 pt-6 border-t border-border text-sm text-text-muted">
+    <footer class="max-w-prose mt-12 pt-6 border-t border-border text-sm text-text-muted">
       Written by <a href="/about" class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{siteConfig.author.name}</a>
     </footer>
   </article>
