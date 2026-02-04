@@ -41,9 +41,10 @@
   --font-display: "Lora", Georgia, "Times New Roman", serif;
 }
 
-/* Heading font */
+/* Heading font + balanced wrapping */
 h1, h2, h3 {
   font-family: var(--font-display);
+  text-wrap: balance;
 }
 
 /* Scroll-triggered fade-up animation */

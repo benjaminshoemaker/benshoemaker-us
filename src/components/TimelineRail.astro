@@ -10,9 +10,13 @@ interface Props {
 
 const { projects, repoDetails } = Astro.props;
 
-const timelineProjects = projects
+const allTimelineProjects = projects
   .filter(p => p.startDate)
   .sort((a, b) => new Date(b.startDate!).getTime() - new Date(a.startDate!).getTime());
+
+// Show all on desktop (CSS handles visibility), limit on mobile
+const timelineProjects = allTimelineProjects;
+const mobileLimit = 4;
 
 function formatShortDate(dateString: string): string {
   const date = new Date(dateString + 'T00:00:00');
@@ -42,14 +46,14 @@ function getProjectHref(project: Project): string | undefined {
       <div class="absolute left-[3px] top-1 bottom-1 w-px bg-border" aria-hidden="true" />
 
       <div class="space-y-4">
-        {timelineProjects.map((project) => {
+        {timelineProjects.map((project, index) => {
           const details = project.githubUrl ? repoDetails?.get(project.githubUrl) : undefined;
           const stars = details?.stargazerCount;
           const href = getProjectHref(project);
           const hasCustomDomain = project.liveUrl && !project.liveUrl.includes('.vercel.app') && !project.liveUrl.includes('.github.io');
 
           return (
-            <div class="timeline-item relative pl-5">
+            <div class:list={["timeline-item relative pl-5", index >= mobileLimit && "hidden lg:block"]}>
               {/* Dot */}
               <div class="absolute left-0 top-[7px] w-[7px] h-[7px] rounded-full bg-accent" aria-hidden="true" />
 

@@ -7,8 +7,10 @@ import ProjectCard from '../components/ProjectCard.astro';
 import BuildingNow from '../components/BuildingNow.astro';
 import ContributionGrid from '../components/ContributionGrid.astro';
 import TimelineRail from '../components/TimelineRail.astro';
+import { Image } from 'astro:assets';
 import { siteConfig } from '../data/site';
 import { projects } from '../data/projects';
+import headshotImg from '../assets/images/LI_headshot.jpeg';
 import { fetchContributionCalendar, fetchRecentlyActiveRepos, fetchRepoDetails } from '../lib/github';
 
 const recentPosts = (await getCollection('writing'))
@@ -52,18 +54,27 @@ const jsonLd = {
       <div class="flex-1 min-w-0">
         {/* Hero */}
         <section class="py-16 sm:py-24">
-          <h1 class="text-4xl sm:text-5xl font-bold text-text-primary mb-6">
-            Product leader. Builder.<br class="hidden sm:block" />
-            Technical co-founder.
-          </h1>
+          <div class="flex items-start gap-6 mb-6">
+            <Image
+              src={headshotImg}
+              alt="Ben Shoemaker"
+              class="hidden sm:block w-20 h-20 rounded-full object-cover shrink-0 mt-1"
+              width={80}
+              height={80}
+            />
+            <h1 class="text-4xl sm:text-5xl font-bold text-text-primary" style="text-wrap: balance;">
+              Product leader. Builder.<br class="hidden sm:block" />
+              Technical co-founder.
+            </h1>
+          </div>
           <div class="max-w-prose mb-8 space-y-4">
-            <p class="text-xl text-text-body">
+            <p class="text-lg sm:text-xl leading-relaxed text-text-body">
               I spent 12 years at Indeed creating company-wide success metrics used by executives and the board, and scaling SMB hiring products through analytics-driven experimentation.
             </p>
-            <p class="text-xl text-text-body">
+            <p class="text-lg sm:text-xl leading-relaxed text-text-body">
               AI tools changed what's possible. Now I build products myself — a spec generator with 4,000+ users, a PropTech platform from scratch. Product leaders can ship now, not just specify.
             </p>
-            <p class="text-xl text-text-body">
+            <p class="text-lg sm:text-xl leading-relaxed text-text-body">
               I think we're seeing a new role emerge — product intuition plus technical depth. Software development is changing. I'm figuring out what that looks like. I write about it and build it in the open.
             </p>
           </div>
@@ -79,7 +90,7 @@ const jsonLd = {
             </a>
           </div>
           {recentPosts.length > 0 ? (
-            <div class="space-y-3">
+            <div class="space-y-4">
               {recentPosts.map(post => (
                 <PostCard
                   title={post.data.title}
@@ -174,7 +185,7 @@ const jsonLd = {
           href={siteConfig.author.calendarUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-text-primary font-medium rounded-lg hover:bg-surface-raised transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border bg-surface-raised text-text-primary font-medium rounded-lg hover:bg-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
         >
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
