@@ -2,7 +2,7 @@
 title: "The Codex App Changes Everything!!! (not really) "
 date: 2026-02-04
 type: essay
-tags: ["ai-coding", "tools"]
+tags: [ai-coding, tools]
 description: "The Codex desktop app doesn't change everything - but it's part of a larger trend worth paying attention to. Where IDEs are headed and why specs matter more than code."
 draft: false
 ---

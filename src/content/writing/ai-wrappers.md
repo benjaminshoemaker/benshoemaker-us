@@ -1,9 +1,9 @@
 ---
-title: "AI_Wrappers"
-date: 2026-02-04
+title: "The AI Wrapper Problem and the Case for BYOK"
+date: 2026-01-16
 type: note
-tags: []
-description: ""
+tags: [ai, product, business-models]
+description: "Why the current AI wrapper market is stuck between value and UX, and how bring-your-own-key could become a competitive advantage."
 draft: false
 ---
 

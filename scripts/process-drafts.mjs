@@ -76,30 +76,50 @@ async function convertDocx(fileName) {
   markdown = markdown.replace(/^(#{1,6})\s*\n/gm, '');
   markdown = markdown.replace(/\n{3,}/g, '\n\n');
 
-  // Extract title from first heading or filename
+  // Extract title from first heading, or derive from filename
   const titleMatch = markdown.match(/^#\s+(.+)$/m);
-  let title = titleMatch ? titleMatch[1].trim() : basename(fileName, '.docx').replace(/-/g, ' ');
-
-  // Remove the first heading if we extracted it as title
+  let title;
   if (titleMatch) {
+    title = titleMatch[1].trim();
     markdown = markdown.replace(/^#\s+.+\n+/, '');
+  } else {
+    // Convert slug-style filename to title case: "the-ai-wrapper-problem" → "The AI Wrapper Problem"
+    title = basename(fileName, '.docx')
+      .replace(/[_-]+/g, ' ')
+      .trim()
+      .replace(/\b\w/g, c => c.toUpperCase());
   }
 
   // Clean any residual HTML tags from title
   title = title.replace(/<[^>]+>/g, '').trim();
 
+  // Extract description from first non-empty, non-image paragraph
+  const bodyLines = markdown.trim().split('\n').filter(l => l.trim() && !l.startsWith('!['));
+  let description = '';
+  if (bodyLines.length > 0) {
+    // Take first paragraph, strip markdown formatting, truncate to ~160 chars
+    description = bodyLines[0]
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')  // [text](url) → text
+      .replace(/[*_`#]/g, '')                     // strip formatting chars
+      .replace(/\\([.\-()>!])/g, '$1')            // unescape
+      .trim();
+    if (description.length > 160) {
+      description = description.slice(0, 157).replace(/\s+\S*$/, '') + '...';
+    }
+  }
+
   // Determine type based on content length
   const wordCount = markdown.split(/\s+/).length;
   const type = wordCount > 500 ? 'essay' : 'note';
 
-  // Build frontmatter
+  // Build frontmatter — tags left empty for manual curation
   const today = new Date().toISOString().split('T')[0];
   const frontmatter = `---
 title: "${title}"
 date: ${today}
 type: ${type}
 tags: []
-description: ""
+description: "${description}"
 draft: false
 ---
 

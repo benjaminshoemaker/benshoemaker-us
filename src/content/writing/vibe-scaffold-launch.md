@@ -1,9 +1,9 @@
 ---
-title: "Vibe_Scaffold_Launch"
-date: 2026-02-04
+title: "Launching Vibe Scaffold: From Idea to 2,300 Users in 48 Hours"
+date: 2025-11-25
 type: note
-tags: []
-description: ""
+tags: [vibe-scaffold, launch, ai-coding]
+description: "How a tool for turning rough product ideas into structured AI coding specs went from weekend project to 2,300 users in two days."
 draft: false
 ---
 

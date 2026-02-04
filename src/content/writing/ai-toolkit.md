@@ -1,9 +1,9 @@
 ---
-title: "AI_toolkit"
-date: 2026-02-04
+title: "An Open-Source Toolkit for AI-Assisted Coding"
+date: 2026-01-27
 type: note
-tags: []
-description: ""
+tags: [ai-coding, tools, open-source]
+description: "Introducing a lightweight, open-source toolkit that brings structure to AI-assisted coding through a Specify, Plan, Execute workflow."
 draft: false
 ---
 
