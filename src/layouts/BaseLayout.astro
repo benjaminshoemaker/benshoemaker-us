@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEOHead from '../components/SEOHead.astro';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 
 interface Props {
@@ -20,6 +21,7 @@ const { title, description, ogImage, ogType, jsonLd } = Astro.props;
   <head>
     <script is:inline>document.documentElement.classList.replace('no-js','js')</script>
     <SEOHead {title} {description} {ogImage} {ogType} {jsonLd} />
+    <Analytics />
   </head>
   <body class="min-h-screen flex flex-col bg-surface text-text-body font-sans antialiased">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
