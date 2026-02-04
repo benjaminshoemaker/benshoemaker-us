@@ -26,6 +26,7 @@ pnpm-debug.log*
 
 # Draft docx files (converted to markdown)
 drafts/*.docx
+drafts/archived/*.docx
 
 # Planning and spec documents (private)
 INITIAL_BRAINSTORM.txt
