@@ -16,7 +16,7 @@ import { fetchContributionCalendar, fetchRecentlyActiveRepos, fetchRepoDetails }
 const recentPosts = (await getCollection('writing'))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 4);
+  .slice(0, 3);
 
 const featuredProjects = projects.filter(p => p.featured);
 
@@ -58,7 +58,7 @@ const jsonLd = {
             <Image
               src={headshotImg}
               alt="Ben Shoemaker"
-              class="hidden sm:block w-20 h-20 rounded-full object-cover shrink-0 mt-1"
+              class="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover shrink-0 mt-1"
               width={80}
               height={80}
             />
@@ -96,7 +96,7 @@ const jsonLd = {
         <section class="pt-4 pb-12 fade-up">
           <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-text-primary">Recent Writing</h2>
-            <a href="/writing" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+            <a href="/writing" class="text-sm text-accent hover:text-accent-hover transition-colors py-2 px-3 -mr-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
               View all &rarr;
             </a>
           </div>
@@ -122,7 +122,7 @@ const jsonLd = {
         <section class="py-12 border-t border-border fade-up">
           <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-text-primary">Featured Projects</h2>
-            <a href="/projects" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+            <a href="/projects" class="text-sm text-accent hover:text-accent-hover transition-colors py-2 px-3 -mr-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
               View all &rarr;
             </a>
           </div>
@@ -157,7 +157,7 @@ const jsonLd = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex items-center justify-between mb-8">
       <h2 class="text-2xl font-bold text-text-primary">Activity</h2>
-      <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+      <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="text-sm text-accent hover:text-accent-hover transition-colors py-2 px-3 -mr-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
         GitHub &rarr;
       </a>
     </div>

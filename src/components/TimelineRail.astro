@@ -139,9 +139,22 @@ function getProjectHref(project: Project): string | undefined {
     overflow: hidden;
   }
 
+  /* Expand on hover for pointer devices */
   @media (hover: hover) {
     .timeline-item:hover .timeline-detail {
       grid-template-rows: 1fr;
     }
+  }
+
+  /* Always show details on touch devices (no hover available) */
+  @media (hover: none) {
+    .timeline-detail {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  /* Also expand on keyboard focus */
+  .timeline-item:focus-within .timeline-detail {
+    grid-template-rows: 1fr;
   }
 </style>

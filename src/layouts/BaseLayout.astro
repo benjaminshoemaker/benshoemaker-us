@@ -16,8 +16,9 @@ const { title, description, ogImage, ogType, jsonLd } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
+    <script is:inline>document.documentElement.classList.replace('no-js','js')</script>
     <SEOHead {title} {description} {ogImage} {ogType} {jsonLd} />
   </head>
   <body class="min-h-screen flex flex-col bg-surface text-text-body font-sans antialiased">

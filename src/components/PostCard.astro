@@ -14,7 +14,7 @@ const { title, date, type, tags, description, slug } = Astro.props;
 ---
 
 <article class="group">
-  <a href={`/writing/${slug}`} class="block p-4 rounded-lg border border-border bg-surface-raised hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+  <a href={`/writing/${slug}`} class="post-card block p-4 rounded-lg border border-border bg-surface-raised transition-all duration-200 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
     <div class="flex items-center gap-3 text-sm text-text-muted mb-2">
       <time datetime={date.toISOString()}>
         {date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
@@ -36,3 +36,12 @@ const { title, date, type, tags, description, slug } = Astro.props;
     )}
   </a>
 </article>
+
+<style>
+  @media (hover: hover) {
+    .post-card:hover {
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+  }
+</style>

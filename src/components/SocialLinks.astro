@@ -7,10 +7,10 @@ interface Props {
 
 const { size = 'md' } = Astro.props;
 const iconSize = size === 'sm' ? 'w-5 h-5' : 'w-6 h-6';
-const linkClass = `inline-flex items-center justify-center p-2 text-text-muted hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus`;
+const linkClass = `inline-flex items-center justify-center p-3 text-text-muted hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus`;
 ---
 
-<div class="flex items-center gap-1">
+<div class="flex items-center gap-2">
   <a
     href={siteConfig.social.github}
     target="_blank"
