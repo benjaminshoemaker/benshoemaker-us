@@ -71,7 +71,7 @@ const jsonLd = {
         </section>
 
         {/* Recent Writing */}
-        <section class="py-16 border-t border-border">
+        <section class="py-12 fade-up">
           <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-text-primary">Recent Writing</h2>
             <a href="/writing" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
@@ -97,7 +97,7 @@ const jsonLd = {
         </section>
 
         {/* Featured Projects */}
-        <section class="py-16 border-t border-border">
+        <section class="py-12 border-t border-border fade-up">
           <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-text-primary">Featured Projects</h2>
             <a href="/projects" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
@@ -131,7 +131,8 @@ const jsonLd = {
   </div>
 
   {/* Activity — Building Now + Contribution Grid */}
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-border">
+  <section class="bg-surface-muted fade-up">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex items-center justify-between mb-8">
       <h2 class="text-2xl font-bold text-text-primary">Activity</h2>
       <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
@@ -148,15 +149,57 @@ const jsonLd = {
         <ContributionGrid calendar={calendar} />
       </div>
     )}
+    </div>
   </section>
 
-  {/* CTA */}
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-border">
-    <p class="text-text-muted">
-      Looking for help with AI-assisted development?
-      <a href="/services" class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
-        Check out my services
-      </a>.
-    </p>
+  {/* CTA — Get in Touch */}
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 fade-up">
+    <div class="rounded-2xl bg-accent-light border border-accent/20 p-6 sm:p-8">
+      <h2 class="text-xl font-semibold text-text-primary mb-4">Get in Touch</h2>
+      <p class="text-text-body mb-6">
+        I'm building my own ventures and selectively taking on consulting and advisory work. Open to the right opportunity — full-time, fractional, or partnership — with teams doing interesting work in AI, data, or dev tooling.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href={`mailto:${siteConfig.author.email}`}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Send an Email
+        </a>
+        <a
+          href={siteConfig.author.calendarUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-text-primary font-medium rounded-lg hover:bg-surface-raised transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          Book a Call
+        </a>
+      </div>
+    </div>
   </section>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+  </script>
 </BaseLayout>

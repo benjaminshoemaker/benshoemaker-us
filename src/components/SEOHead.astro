@@ -21,6 +21,9 @@ const fullTitle = Astro.url.pathname === '/' ? title : `${title} | ${siteConfig.
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
 <link rel="icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
 
 <!-- Open Graph -->
 <meta property="og:type" content={ogType} />

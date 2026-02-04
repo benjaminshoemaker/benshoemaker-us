@@ -16,7 +16,7 @@ const showMeta = (stars && stars > 0) || lastUpdated;
 const showLiveUrl = liveUrl && !liveUrl.includes('.vercel.app');
 ---
 
-<article class="p-6 bg-surface-raised border border-border rounded-lg">
+<article class="p-6 bg-surface-raised border border-border rounded-lg transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
   <h3 class="text-lg font-semibold text-text-primary mb-2">{name}</h3>
   <p class="text-text-body text-sm mb-4">{description}</p>
 
