@@ -65,6 +65,17 @@ async function convertDocx(fileName) {
 
   let markdown = result.value;
 
+  // Clean up mammoth conversion artifacts
+  // 1. Remove Google Docs anchor tags: <a id="..."></a>
+  markdown = markdown.replace(/<a id="[^"]*"><\/a>/g, '');
+  // 2. Fix mammoth's excessive backslash escaping (periods, parens, hyphens)
+  markdown = markdown.replace(/\\([.\-()>])/g, '$1');
+  // 3. Convert double-underscore bold (__text__) to standard markdown (**text**)
+  markdown = markdown.replace(/__([^_]+)__/g, '**$1**');
+  // 4. Clean up any resulting empty headings or extra whitespace
+  markdown = markdown.replace(/^(#{1,6})\s*\n/gm, '');
+  markdown = markdown.replace(/\n{3,}/g, '\n\n');
+
   // Extract title from first heading or filename
   const titleMatch = markdown.match(/^#\s+(.+)$/m);
   let title = titleMatch ? titleMatch[1].trim() : basename(fileName, '.docx').replace(/-/g, ' ');
@@ -73,6 +84,9 @@ async function convertDocx(fileName) {
   if (titleMatch) {
     markdown = markdown.replace(/^#\s+.+\n+/, '');
   }
+
+  // Clean any residual HTML tags from title
+  title = title.replace(/<[^>]+>/g, '').trim();
 
   // Determine type based on content length
   const wordCount = markdown.split(/\s+/).length;
