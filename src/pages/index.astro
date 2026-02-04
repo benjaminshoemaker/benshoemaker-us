@@ -53,7 +53,7 @@ const jsonLd = {
       {/* Main column */}
       <div class="flex-1 min-w-0">
         {/* Hero */}
-        <section class="py-16 sm:py-24">
+        <section class="py-12 sm:py-16">
           <div class="flex items-start gap-6 mb-6">
             <Image
               src={headshotImg}
@@ -69,10 +69,10 @@ const jsonLd = {
           </div>
           <div class="max-w-prose mb-8 space-y-4">
             <p class="text-lg sm:text-xl leading-relaxed text-text-body">
-              12 years at Indeed building company-wide metrics and scaling products 6x. Now I ship AI-powered products myself — a spec generator with 4,000+ users, a PropTech platform from scratch. I think we're seeing a new role emerge: product intuition plus technical depth. I write about it and build it in the open.
+              12 years at Indeed building company-wide metrics and scaling products 6x. Now I ship AI-powered products myself. I think we're seeing a new role emerge: product intuition plus technical depth. I write about it and build it in the open.
             </p>
             <p class="text-base leading-relaxed text-text-muted">
-              Selectively taking on consulting, advisory, and full-time opportunities — but always open to interesting conversations.
+              Selectively taking on consulting, advisory, and full-time opportunities — also open to interesting conversations.
             </p>
           </div>
           <div class="flex flex-col sm:flex-row gap-3 mb-8">
@@ -93,7 +93,7 @@ const jsonLd = {
         </section>
 
         {/* Recent Writing */}
-        <section class="py-12 fade-up">
+        <section class="pt-4 pb-12 fade-up">
           <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-text-primary">Recent Writing</h2>
             <a href="/writing" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
@@ -146,7 +146,7 @@ const jsonLd = {
       </div>
 
       {/* Right rail — timeline, starts at hero height */}
-      <aside class="mt-12 lg:mt-0 lg:w-56 lg:shrink-0 lg:pt-24 lg:sticky lg:top-24 lg:self-start">
+      <aside class="mt-12 lg:mt-0 lg:w-56 lg:shrink-0 lg:pt-16 lg:sticky lg:top-24 lg:self-start">
         <TimelineRail projects={projects} repoDetails={repoDetails} />
       </aside>
     </div>
