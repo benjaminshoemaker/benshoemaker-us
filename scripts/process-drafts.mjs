@@ -1,5 +1,5 @@
 import mammoth from 'mammoth';
-import { readdirSync, writeFileSync, renameSync, existsSync } from 'fs';
+import { readdirSync, writeFileSync, renameSync, mkdirSync, existsSync } from 'fs';
 import { basename, join } from 'path';
 import { execSync } from 'child_process';
 
@@ -25,7 +25,17 @@ console.log(`\n📄 Found ${docxFiles.length} draft(s) to convert...\n`);
 async function convertDocx(fileName) {
   const filePath = join(DRAFTS_DIR, fileName);
 
-  // Convert docx to markdown
+  // Generate slug from filename (needed early for image paths)
+  const slug = basename(fileName, '.docx')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+  // Create image output directory
+  const imageDir = join('public', 'images', 'writing', slug);
+  let imageCount = 0;
+
+  // Convert docx to markdown, extracting embedded images
   const result = await mammoth.convertToMarkdown(
     { path: filePath },
     {
@@ -33,7 +43,23 @@ async function convertDocx(fileName) {
         "p[style-name='Heading 1'] => # ",
         "p[style-name='Heading 2'] => ## ",
         "p[style-name='Heading 3'] => ### ",
-      ]
+      ],
+      convertImage: mammoth.images.imgElement(function (image) {
+        return image.read().then(function (imageBuffer) {
+          imageCount++;
+          const ext = image.contentType.split('/')[1] || 'png';
+          const imageName = `image-${imageCount}.${ext}`;
+
+          // Ensure directory exists
+          mkdirSync(imageDir, { recursive: true });
+
+          // Write image file
+          const imagePath = join(imageDir, imageName);
+          writeFileSync(imagePath, imageBuffer);
+
+          return { src: `/images/writing/${slug}/${imageName}` };
+        });
+      }),
     }
   );
 
@@ -47,12 +73,6 @@ async function convertDocx(fileName) {
   if (titleMatch) {
     markdown = markdown.replace(/^#\s+.+\n+/, '');
   }
-
-  // Generate slug from filename
-  const slug = basename(fileName, '.docx')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
 
   // Determine type based on content length
   const wordCount = markdown.split(/\s+/).length;
@@ -76,31 +96,39 @@ draft: false
   // Write to content directory
   const outputPath = join(OUTPUT_DIR, `${slug}.md`);
   writeFileSync(outputPath, finalContent);
-  console.log(`   ✅ ${fileName} → ${slug}.md`);
+  if (imageCount > 0) {
+    console.log(`   ✅ ${fileName} → ${slug}.md (${imageCount} image${imageCount > 1 ? 's' : ''} extracted)`);
+  } else {
+    console.log(`   ✅ ${fileName} → ${slug}.md`);
+  }
 
   // Move original to archived
   const archivedPath = join(ARCHIVED_DIR, fileName);
   renameSync(filePath, archivedPath);
 
-  return outputPath;
+  return { outputPath, imageDir: imageCount > 0 ? imageDir : null };
 }
 
 async function main() {
-  const outputPaths = [];
+  const results = [];
 
   for (const fileName of docxFiles) {
     try {
-      const outputPath = await convertDocx(fileName);
-      outputPaths.push(outputPath);
+      const result = await convertDocx(fileName);
+      results.push(result);
     } catch (error) {
       console.error(`   ❌ Failed to convert ${fileName}: ${error.message}`);
     }
   }
 
-  // Stage the new markdown files
-  if (outputPaths.length > 0) {
-    execSync(`git add ${outputPaths.map(p => `"${p}"`).join(' ')}`, { stdio: 'inherit' });
-    console.log(`\n📝 Staged ${outputPaths.length} new post(s)\n`);
+  // Stage the new markdown files and any extracted images
+  if (results.length > 0) {
+    const pathsToStage = results.map(r => `"${r.outputPath}"`);
+    for (const r of results) {
+      if (r.imageDir) pathsToStage.push(`"${r.imageDir}"`);
+    }
+    execSync(`git add ${pathsToStage.join(' ')}`, { stdio: 'inherit' });
+    console.log(`\n📝 Staged ${results.length} new post(s)\n`);
   }
 }
 
