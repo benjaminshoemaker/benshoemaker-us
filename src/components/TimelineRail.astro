@@ -1,0 +1,143 @@
+---
+import type { Project } from '../data/projects';
+import type { RepoInfo } from '../lib/github';
+import { formatRelativeTime } from '../lib/github';
+
+interface Props {
+  projects: Project[];
+  repoDetails: Map<string, RepoInfo> | null;
+}
+
+const { projects, repoDetails } = Astro.props;
+
+const timelineProjects = projects
+  .filter(p => p.startDate)
+  .sort((a, b) => new Date(b.startDate!).getTime() - new Date(a.startDate!).getTime());
+
+function formatShortDate(dateString: string): string {
+  const date = new Date(dateString + 'T00:00:00');
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+function getProjectHref(project: Project): string | undefined {
+  // Prefer custom domains over generic vercel.app URLs
+  if (project.liveUrl && !project.liveUrl.includes('.vercel.app')) {
+    return project.liveUrl;
+  }
+  return project.githubUrl || project.liveUrl;
+}
+---
+
+{timelineProjects.length > 0 && (
+  <div>
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-sm font-semibold text-text-muted uppercase tracking-wide">Projects</h2>
+      <a href="/projects" class="text-xs text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+        View all &rarr;
+      </a>
+    </div>
+
+    <div class="relative">
+      {/* Vertical line */}
+      <div class="absolute left-[3px] top-1 bottom-1 w-px bg-border" aria-hidden="true" />
+
+      <div class="space-y-4">
+        {timelineProjects.map((project) => {
+          const details = project.githubUrl ? repoDetails?.get(project.githubUrl) : undefined;
+          const stars = details?.stargazerCount;
+          const href = getProjectHref(project);
+          const hasCustomDomain = project.liveUrl && !project.liveUrl.includes('.vercel.app') && !project.liveUrl.includes('.github.io');
+
+          return (
+            <div class="timeline-item relative pl-5">
+              {/* Dot */}
+              <div class="absolute left-0 top-[7px] w-[7px] h-[7px] rounded-full bg-accent" aria-hidden="true" />
+
+              <div class="flex items-start justify-between gap-2">
+                <div class="min-w-0">
+                  {href ? (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-sm font-medium text-text-primary hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                    >
+                      {project.name}
+                    </a>
+                  ) : (
+                    <span class="text-sm font-medium text-text-primary">{project.name}</span>
+                  )}
+                  <time class="block text-xs text-text-muted mt-0.5">
+                    {formatShortDate(project.startDate!)}
+                  </time>
+                </div>
+                {stars != null && stars > 0 && (
+                  <span class="shrink-0 inline-flex items-center gap-1 text-xs text-text-muted mt-0.5">
+                    <svg class="w-3 h-3" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                      <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" />
+                    </svg>
+                    {stars}
+                  </span>
+                )}
+              </div>
+
+              {/* Inline expand on hover */}
+              <div class="timeline-detail overflow-hidden">
+                <div class="pt-2">
+                  <p class="text-xs text-text-body leading-relaxed mb-2">{project.description}</p>
+                  {project.techStack.length > 0 && (
+                    <div class="flex flex-wrap gap-1 mb-2">
+                      {project.techStack.map(tech => (
+                        <span class="inline-block px-1.5 py-0.5 text-[10px] font-medium rounded bg-surface-muted text-text-muted">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div class="flex items-center gap-3 text-[10px] text-text-muted">
+                    {details?.pushedAt && (
+                      <span>Updated {formatRelativeTime(details.pushedAt)}</span>
+                    )}
+                    {hasCustomDomain && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-0.5 hover:text-accent transition-colors"
+                      >
+                        <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        Live
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  .timeline-detail {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 200ms ease;
+  }
+
+  .timeline-detail > div {
+    overflow: hidden;
+  }
+
+  @media (hover: hover) {
+    .timeline-item:hover .timeline-detail {
+      grid-template-rows: 1fr;
+    }
+  }
+</style>
