@@ -47,13 +47,14 @@ const jsonLd = {
 <BaseLayout title={siteConfig.title} description={siteConfig.description} jsonLd={jsonLd}>
   {/* Hero + Content + Timeline Rail */}
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="lg:flex lg:gap-16">
+    <div class="lg:flex lg:gap-12">
       {/* Main column */}
       <div class="flex-1 min-w-0">
         {/* Hero */}
         <section class="py-16 sm:py-24">
           <h1 class="text-4xl sm:text-5xl font-bold text-text-primary mb-6">
-            Product leader. Builder. Technical co-founder.
+            Product leader. Builder.<br class="hidden sm:block" />
+            Technical co-founder.
           </h1>
           <div class="max-w-prose mb-8 space-y-4">
             <p class="text-xl text-text-body">
@@ -123,7 +124,7 @@ const jsonLd = {
       </div>
 
       {/* Right rail — timeline, starts at hero height */}
-      <aside class="mt-12 lg:mt-0 lg:w-72 lg:shrink-0 lg:pt-24 lg:sticky lg:top-24 lg:self-start">
+      <aside class="mt-12 lg:mt-0 lg:w-56 lg:shrink-0 lg:pt-24 lg:sticky lg:top-24 lg:self-start">
         <TimelineRail projects={projects} repoDetails={repoDetails} />
       </aside>
     </div>
