@@ -2,10 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import GitHubStats from '../components/GitHubStats.astro';
+import ProjectTimeline from '../components/ProjectTimeline.astro';
 import { projects } from '../data/projects';
-import { fetchGitHubStats } from '../lib/github';
+import { fetchGitHubStats, fetchRepoDetails } from '../lib/github';
 
-const githubStats = await fetchGitHubStats('benjaminshoemaker');
+const githubUrls = projects
+  .map(p => p.githubUrl)
+  .filter((url): url is string => !!url);
+
+const [githubStats, repoDetails] = await Promise.all([
+  fetchGitHubStats('benjaminshoemaker'),
+  fetchRepoDetails('benjaminshoemaker', githubUrls),
+]);
+
+const timelineProjects = projects
+  .filter(p => p.startDate)
+  .sort((a, b) => new Date(b.startDate!).getTime() - new Date(a.startDate!).getTime());
 ---
 
 <BaseLayout title="Projects" description="A curated selection of projects I've built, including AI coding tools and analytics platforms.">
@@ -18,17 +30,29 @@ const githubStats = await fetchGitHubStats('benjaminshoemaker');
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-      {projects.map(project => (
-        <ProjectCard
-          name={project.name}
-          description={project.description}
-          techStack={project.techStack}
-          githubUrl={project.githubUrl}
-          liveUrl={project.liveUrl}
-        />
-      ))}
+      {projects.map(project => {
+        const details = project.githubUrl ? repoDetails?.get(project.githubUrl) : undefined;
+        return (
+          <ProjectCard
+            name={project.name}
+            description={project.description}
+            techStack={project.techStack}
+            githubUrl={project.githubUrl}
+            liveUrl={project.liveUrl}
+            stars={details?.stargazerCount}
+            lastUpdated={details?.pushedAt}
+          />
+        );
+      })}
     </div>
 
     <GitHubStats stats={githubStats} />
+
+    {timelineProjects.length > 0 && (
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold text-text-primary mb-8">Project Timeline</h2>
+        <ProjectTimeline projects={timelineProjects} />
+      </section>
+    )}
   </div>
 </BaseLayout>

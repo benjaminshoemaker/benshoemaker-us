@@ -4,8 +4,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import PostCard from '../components/PostCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import BuildingNow from '../components/BuildingNow.astro';
+import ContributionGrid from '../components/ContributionGrid.astro';
 import { siteConfig } from '../data/site';
 import { projects } from '../data/projects';
+import { fetchContributionCalendar, fetchRecentlyActiveRepos } from '../lib/github';
 
 const recentPosts = (await getCollection('writing'))
   .filter(post => !post.data.draft)
@@ -13,6 +16,11 @@ const recentPosts = (await getCollection('writing'))
   .slice(0, 4);
 
 const featuredProjects = projects.filter(p => p.featured);
+
+const [calendar, recentRepos] = await Promise.all([
+  fetchContributionCalendar('benjaminshoemaker'),
+  fetchRecentlyActiveRepos('benjaminshoemaker', 5),
+]);
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -89,6 +97,27 @@ const jsonLd = {
       ))}
     </div>
   </section>
+
+  {/* Building Now */}
+  {recentRepos && recentRepos.length > 0 && (
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold text-text-primary">Building Now</h2>
+        <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="text-sm text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+          GitHub &rarr;
+        </a>
+      </div>
+      <BuildingNow repos={recentRepos} />
+    </section>
+  )}
+
+  {/* Contribution Grid */}
+  {calendar && (
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">Contributions</h2>
+      <ContributionGrid calendar={calendar} />
+    </section>
+  )}
 
   {/* CTA */}
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border">

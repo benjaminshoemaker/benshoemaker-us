@@ -1,0 +1,113 @@
+---
+import type { ContributionCalendar } from '../lib/github';
+
+interface Props {
+  calendar: ContributionCalendar | null;
+}
+
+const { calendar } = Astro.props;
+
+function getLevel(count: number): number {
+  if (count === 0) return 0;
+  if (count <= 3) return 1;
+  if (count <= 7) return 2;
+  if (count <= 12) return 3;
+  return 4;
+}
+---
+
+{calendar && (
+  <div class="contribution-grid-wrapper">
+    <p class="text-sm text-text-muted mb-3">
+      <span class="font-semibold text-text-primary">{calendar.totalContributions.toLocaleString()}</span> contributions in the last year
+    </p>
+
+    {/* Month labels */}
+    <div class="overflow-x-auto pb-2">
+      <div class="contribution-months" style={`grid-template-columns: repeat(${calendar.weeks.length}, 1fr);`}>
+        {calendar.months.map((month) => {
+          // Find the week index where this month starts
+          const monthStart = new Date(month.firstDay);
+          const firstWeekDate = new Date(calendar.weeks[0].contributionDays[0].date);
+          const diffDays = Math.floor((monthStart.getTime() - firstWeekDate.getTime()) / (1000 * 60 * 60 * 24));
+          const weekIndex = Math.max(0, Math.floor(diffDays / 7));
+          return (
+            <span
+              class="text-xs text-text-muted"
+              style={`grid-column: ${weekIndex + 1} / span ${month.totalWeeks};`}
+            >
+              {month.name}
+            </span>
+          );
+        })}
+      </div>
+
+      {/* Grid cells */}
+      <div
+        class="contribution-grid"
+        style={`grid-template-columns: repeat(${calendar.weeks.length}, 1fr);`}
+        role="img"
+        aria-label={`Contribution graph: ${calendar.totalContributions} contributions in the last year`}
+      >
+        {calendar.weeks.map((week) =>
+          week.contributionDays.map((day) => (
+            <div
+              class={`contribution-cell level-${getLevel(day.contributionCount)}`}
+              title={`${day.date}: ${day.contributionCount} contribution${day.contributionCount !== 1 ? 's' : ''}`}
+              aria-label={`${day.date}: ${day.contributionCount} contribution${day.contributionCount !== 1 ? 's' : ''}`}
+            />
+          ))
+        )}
+      </div>
+    </div>
+
+    {/* Legend */}
+    <div class="flex items-center gap-1 mt-2 justify-end">
+      <span class="text-xs text-text-muted mr-1">Less</span>
+      <div class="contribution-cell level-0" style="width:10px;height:10px;" />
+      <div class="contribution-cell level-1" style="width:10px;height:10px;" />
+      <div class="contribution-cell level-2" style="width:10px;height:10px;" />
+      <div class="contribution-cell level-3" style="width:10px;height:10px;" />
+      <div class="contribution-cell level-4" style="width:10px;height:10px;" />
+      <span class="text-xs text-text-muted ml-1">More</span>
+    </div>
+  </div>
+)}
+
+<style>
+  .contribution-months {
+    display: grid;
+    grid-auto-flow: column;
+    margin-bottom: 4px;
+  }
+
+  .contribution-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    gap: 2px;
+  }
+
+  .contribution-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+
+  .level-0 { background-color: var(--color-contrib-0); }
+  .level-1 { background-color: var(--color-contrib-1); }
+  .level-2 { background-color: var(--color-contrib-2); }
+  .level-3 { background-color: var(--color-contrib-3); }
+  .level-4 { background-color: var(--color-contrib-4); }
+
+  @media (max-width: 640px) {
+    .contribution-cell {
+      width: 10px;
+      height: 10px;
+    }
+
+    .contribution-grid {
+      gap: 1px;
+    }
+  }
+</style>

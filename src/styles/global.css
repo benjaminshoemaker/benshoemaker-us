@@ -23,6 +23,13 @@
   --color-border: #e7e5e4;
   --color-border-light: #f5f5f4;
 
+  /* Contribution grid levels (warm amber) */
+  --color-contrib-0: #f3f0eb;
+  --color-contrib-1: #fef3c7;
+  --color-contrib-2: #fcd34d;
+  --color-contrib-3: #b45309;
+  --color-contrib-4: #92400e;
+
   /* Focus ring (accessibility) */
   --color-focus: #d97706;
 

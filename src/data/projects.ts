@@ -5,6 +5,7 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   featured: boolean;
+  startDate?: string;
 }
 
 export const projects: Project[] = [
@@ -15,6 +16,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/benjaminshoemaker/vibecode_spec_generator',
     liveUrl: 'https://vibescaffold.dev/',
     featured: true,
+    startDate: '2025-11-17',
   },
   {
     name: 'AI Coding Project Base',
@@ -23,6 +25,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/benjaminshoemaker/ai_coding_project_base',
     liveUrl: 'https://benjaminshoemaker.github.io/ai_coding_project_base/',
     featured: false,
+    startDate: '2025-12-28',
   },
   {
     name: 'Notes Brain',
@@ -31,6 +34,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/benjaminshoemaker/notes_brain',
     liveUrl: 'https://notes-brain-web.vercel.app',
     featured: false,
+    startDate: '2026-01-21',
   },
   {
     name: 'Simple QR Code Generator',
@@ -39,6 +43,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/benjaminshoemaker/simple-qr-code-generator',
     liveUrl: 'https://simple-qr-code-generator-gamma.vercel.app',
     featured: false,
+    startDate: '2026-01-10',
   },
   {
     name: 'LetGo',
@@ -47,6 +52,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/benjaminshoemaker/letgo',
     liveUrl: 'https://letgo-delta.vercel.app',
     featured: false,
+    startDate: '2026-01-06',
   },
   {
     name: 'Tally Analytics',
@@ -55,6 +61,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/benjaminshoemaker/tally_analytics',
     liveUrl: 'https://usetally.xyz',
     featured: true,
+    startDate: '2025-12-21',
   },
   {
     name: 'NFL Game Explainer',
@@ -63,6 +70,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/benjaminshoemaker/nfl_game_explainer',
     liveUrl: 'https://windelta.app/',
     featured: false,
+    startDate: '2025-11-23',
   },
   {
     name: 'Job Seeker Toolkit',
@@ -70,5 +78,6 @@ export const projects: Project[] = [
     techStack: ['TypeScript', 'CSS', 'Docker'],
     githubUrl: 'https://github.com/benjaminshoemaker/job_seeker_toolkit',
     featured: false,
+    startDate: '2025-09-22',
   },
 ];
