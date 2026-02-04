@@ -21,38 +21,50 @@ const timelineProjects = projects
 ---
 
 <BaseLayout title="Projects" description="A curated selection of projects I've built, including AI coding tools and analytics platforms.">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <header class="mb-12">
-      <h1 class="text-3xl font-bold text-text-primary mb-4">Projects</h1>
-      <p class="text-lg text-text-muted">
-        A curated selection of projects I've built.
-      </p>
-    </header>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
-      {projects.map(project => {
-        const details = project.githubUrl ? repoDetails?.get(project.githubUrl) : undefined;
-        return (
-          <ProjectCard
-            name={project.name}
-            description={project.description}
-            techStack={project.techStack}
-            githubUrl={project.githubUrl}
-            liveUrl={project.liveUrl}
-            stars={details?.stargazerCount}
-            lastUpdated={details?.pushedAt}
-          />
-        );
-      })}
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-12">
+        <h1 class="text-3xl font-bold text-text-primary mb-4">Projects</h1>
+        <p class="text-lg text-text-muted max-w-prose">
+          A curated selection of projects I've built.
+        </p>
+      </header>
     </div>
+  </section>
 
-    <GitHubStats stats={githubStats} />
+  <section class="py-12 bg-surface-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {projects.map(project => {
+          const details = project.githubUrl ? repoDetails?.get(project.githubUrl) : undefined;
+          return (
+            <ProjectCard
+              name={project.name}
+              description={project.description}
+              techStack={project.techStack}
+              githubUrl={project.githubUrl}
+              liveUrl={project.liveUrl}
+              stars={details?.stargazerCount}
+              lastUpdated={details?.pushedAt}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
 
-    {timelineProjects.length > 0 && (
-      <section class="mt-12">
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <GitHubStats stats={githubStats} />
+    </div>
+  </section>
+
+  {timelineProjects.length > 0 && (
+    <section class="py-12 bg-surface-muted">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl font-bold text-text-primary mb-8">Project Timeline</h2>
         <ProjectTimeline projects={timelineProjects} />
-      </section>
-    )}
-  </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>

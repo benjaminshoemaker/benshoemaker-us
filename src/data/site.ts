@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: 'Ben Shoemaker',
-  title: 'Ben Shoemaker — AI-Assisted Development',
+  title: 'Ben Shoemaker  - AI-Assisted Development',
   description:
-    'Personal site and thought leadership platform for Ben Shoemaker — AI-assisted development practitioner, builder, and consultant.',
+    'Personal site and thought leadership platform for Ben Shoemaker  - AI-assisted development practitioner, builder, and consultant.',
   url: 'https://benshoemaker.us',
   ogImage: '/og-default.png',
 

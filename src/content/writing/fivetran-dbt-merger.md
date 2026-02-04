@@ -47,7 +47,7 @@ Even inside a suite, you can maintain leverage at key decision points:
 
 **Table format is your exit hatch.** Store data in Apache Iceberg or Delta with UniForm enabled. Any engine that reads Iceberg can access your data – you're not re-ingesting, just changing the query layer. Quick test: can you query your production tables from Trino right now?
 
-**Treat orchestration as your contract layer.** Use Airflow, Dagster, or Prefect—not vendor-native schedulers. If your dependencies live in Databricks Workflows or Snowflake Tasks, you can't port them.
+**Treat orchestration as your contract layer.** Use Airflow, Dagster, or Prefect -not vendor-native schedulers. If your dependencies live in Databricks Workflows or Snowflake Tasks, you can't port them.
 
 **Keep transformation logic portable.** Write SQL that compiles to multiple engines – dbt Core with multiple adapters, or SQLGlot for transpilation. Vendor-specific syntax creates rewrite costs during migration.
 
@@ -73,13 +73,13 @@ The key is knowing which decision points to keep open.
 
 ## What to Do This Quarter
 
-Unpopular opinion: Most teams overthink portability. The right amount of lock-in isn't zero—it's just enough that you're making an active choice, not drifting into dependency. Teams that panic-migrate every time a vendor announcement drops waste more money than they save. The ones that build smart exit options sleep better and negotiate harder.
+Unpopular opinion: Most teams overthink portability. The right amount of lock-in isn't zero -it's just enough that you're making an active choice, not drifting into dependency. Teams that panic-migrate every time a vendor announcement drops waste more money than they save. The ones that build smart exit options sleep better and negotiate harder.
 
 **If you're serious about maintaining flexibility, do these three things:**
 
 ### 1. Map Your True Exit Costs
 
-Not the theoretical "we could switch" but the actual engineering hours, stakeholder retraining, and downtime risk. Which sources? Which connectors—API vs. database replication? How many dbt models with vendor-specific SQL? How many dashboards are executive-facing?
+Not the theoretical "we could switch" but the actual engineering hours, stakeholder retraining, and downtime risk. Which sources? Which connectors -API vs. database replication? How many dbt models with vendor-specific SQL? How many dashboards are executive-facing?
 
 For each component, estimate swap cost. I've done this exercise five times. It's always 2-3x worse than you think.
 
@@ -105,8 +105,8 @@ Assume 20-30% annual price increases for consolidated vendors post-merger. For c
 Build your 2026 budget with three scenarios:
 
 1. **Base case:** Renew all vendors at 15% increase
-2. **Consolidation case:** One vendor raises 40%—model swap costs vs. paying
-3. **Expansion case:** Data volume grows 50%—how does per-GB pricing scale?
+2. **Consolidation case:** One vendor raises 40% -model swap costs vs. paying
+3. **Expansion case:** Data volume grows 50% -how does per-GB pricing scale?
 
 Walk your exec team through all three scenarios. Advocate for composable if scenarios 2 or 3 create unacceptable budget risk.
 
@@ -116,7 +116,7 @@ Walk your exec team through all three scenarios. Advocate for composable if scen
 
 The Fivetran+dbt merger isn't going to kill your data stack overnight. But it's a forcing function – one of many consolidation moves that collectively change the economics of how we build data platforms.
 
-**Personal takeaway:** Teams that thrive in consolidated markets don't have perfect architecture or unlimited budgets. They maintain optionality at key decision points—table formats, orchestration, transformation logic.
+**Personal takeaway:** Teams that thrive in consolidated markets don't have perfect architecture or unlimited budgets. They maintain optionality at key decision points -table formats, orchestration, transformation logic.
 
 You don't need to be multi-cloud or multi-warehouse to preserve leverage. You just need to prove you could be.
 

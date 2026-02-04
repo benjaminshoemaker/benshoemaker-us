@@ -20,7 +20,7 @@ export const projects: Project[] = [
   },
   {
     name: 'AI Coding Project Base',
-    description: 'Structured prompt framework for building software products with AI coding assistants — guides you through specification, technical design, and implementation planning.',
+    description: 'Structured prompt framework for building software products with AI coding assistants  - guides you through specification, technical design, and implementation planning.',
     techStack: ['Shell', 'Markdown'],
     githubUrl: 'https://github.com/benjaminshoemaker/ai_coding_project_base',
     liveUrl: 'https://benjaminshoemaker.github.io/ai_coding_project_base/',
@@ -38,7 +38,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Simple QR Code Generator',
-    description: 'An honest QR code generator — free static codes and no-hostage dynamic codes that never expire.',
+    description: 'An honest QR code generator  - free static codes and no-hostage dynamic codes that never expire.',
     techStack: ['TypeScript'],
     githubUrl: 'https://github.com/benjaminshoemaker/simple-qr-code-generator',
     liveUrl: 'https://simple-qr-code-generator-gamma.vercel.app',
@@ -47,7 +47,7 @@ export const projects: Project[] = [
   },
   {
     name: 'LetGo',
-    description: 'AI-powered mobile web app — photograph items you want to get rid of and get recommendations to sell, donate, recycle, or dispose with estimated value and next steps.',
+    description: 'AI-powered mobile web app  - photograph items you want to get rid of and get recommendations to sell, donate, recycle, or dispose with estimated value and next steps.',
     techStack: ['TypeScript', 'AI Vision'],
     githubUrl: 'https://github.com/benjaminshoemaker/letgo',
     liveUrl: 'https://letgo-delta.vercel.app',

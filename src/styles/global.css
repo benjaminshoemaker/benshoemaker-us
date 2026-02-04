@@ -41,6 +41,11 @@
   --font-display: "Lora", Georgia, "Times New Roman", serif;
 }
 
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Heading font + balanced wrapping */
 h1, h2, h3 {
   font-family: var(--font-display);

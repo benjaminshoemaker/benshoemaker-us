@@ -6,11 +6,11 @@ import { siteConfig } from '../data/site';
 const services = [
   {
     title: 'AI Development & Tooling',
-    description: 'AI coding workflow design — setting up teams to use Claude Code, Cursor, and Codex effectively. Specification design, prompt engineering, and agent orchestration. Rapid prototyping — idea to working product in days, not months.',
+    description: 'AI coding workflow design  - setting up teams to use Claude Code, Cursor, and Codex effectively. Specification design, prompt engineering, and agent orchestration. Rapid prototyping  - idea to working product in days, not months.',
   },
   {
     title: 'Data & Analytics',
-    description: "Analytics strategy and measurement frameworks — I built Indeed's company-wide success metrics used in board meetings and 1,000+ A/B experiments per year. Data organization design — scaled a 2-person team to 70+ as the analytics hub for Indeed's Employer business. Platform guidance on event pipelines, warehousing, governance, and data contracts.",
+    description: "Analytics strategy and measurement frameworks  - I built Indeed's company-wide success metrics used in board meetings and 1,000+ A/B experiments per year. Data organization design  - scaled a 2-person team to 70+ as the analytics hub for Indeed's Employer business. Platform guidance on event pipelines, warehousing, governance, and data contracts.",
   },
   {
     title: 'Product Leadership',
@@ -18,64 +18,74 @@ const services = [
   },
   {
     title: 'Hands-On Building',
-    description: "I don't just advise — I build. Full-stack development for MVPs, prototypes, and internal tools. Currently building a PropTech platform as technical co-founder (Astro/React, Supabase, AI-powered insights).",
+    description: "I don't just advise  - I build. Full-stack development for MVPs, prototypes, and internal tools. Currently building a PropTech platform as technical co-founder (Astro/React, Supabase, AI-powered insights).",
   },
 ];
 ---
 
 <BaseLayout title="Services" description="Consulting, advising, and hands-on building for startups and enterprises.">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <header class="mb-12">
-      <h1 class="text-3xl font-bold text-text-primary mb-4">Services</h1>
-      <p class="text-lg text-text-muted max-w-prose">
-        Consulting, advising, and hands-on building for startups and enterprises.
-      </p>
-    </header>
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-12">
+        <h1 class="text-3xl font-bold text-text-primary mb-4">Services</h1>
+        <p class="text-lg text-text-muted max-w-prose">
+          Consulting, advising, and hands-on building for startups and enterprises.
+        </p>
+      </header>
+    </div>
+  </section>
 
-    <section class="mb-12">
+  <section class="py-12 bg-surface-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-xl font-semibold text-text-primary mb-6">What I Offer</h2>
-      <div class="grid grid-cols-1 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {services.map(service => (
           <ServiceCard title={service.title} description={service.description} />
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="mb-12">
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-xl font-semibold text-text-primary mb-4">Why Work With Me</h2>
       <div class="prose prose-stone max-w-prose">
         <p class="text-text-body">
-          I've spent 12 years in product leadership at Indeed — creating metrics used in the boardroom, scaling orgs to 70+ people, running 1,000+ A/B experiments per year. I know how enterprises work.
+          I've spent 12 years in product leadership at Indeed  - creating metrics used in the boardroom, scaling orgs to 70+ people, running 1,000+ A/B experiments per year. I know how enterprises work.
         </p>
         <p class="text-text-body mt-4">
-          I've also built AI-powered products that people actually use — VibeScaffold has 4,000+ users. I've been featured in AI Tinkerers Community Spotlights. I work at the intersection of product intuition and technical depth.
+          I've also built AI-powered products that people actually use  - VibeScaffold has 4,000+ users. I've been featured in AI Tinkerers Community Spotlights. I work at the intersection of product intuition and technical depth.
         </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="mb-12">
+  <section class="py-12 bg-surface-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-xl font-semibold text-text-primary mb-4">Who I Work With</h2>
-      <ul class="space-y-3 text-text-body">
+      <ul class="space-y-3 text-text-body max-w-prose">
         <li class="flex items-start gap-2">
-          <span class="text-text-muted mt-1 shrink-0">&mdash;</span>
+          <span class="text-text-muted mt-1 shrink-0">-</span>
           Startups building AI-native products or needing senior product thinking
         </li>
         <li class="flex items-start gap-2">
-          <span class="text-text-muted mt-1 shrink-0">&mdash;</span>
+          <span class="text-text-muted mt-1 shrink-0">-</span>
           Enterprises adopting AI development tools or modernizing data infrastructure
         </li>
         <li class="flex items-start gap-2">
-          <span class="text-text-muted mt-1 shrink-0">&mdash;</span>
+          <span class="text-text-muted mt-1 shrink-0">-</span>
           Founders who want to validate ideas fast before scaling engineering
         </li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <section class="pt-8">
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="rounded-2xl bg-accent-light border border-accent/20 p-6 sm:p-8">
         <h2 class="text-xl font-semibold text-text-primary mb-4">Get in Touch</h2>
-        <p class="text-text-body mb-6">
-          I'm building my own ventures and selectively taking on consulting and advisory work. Open to the right opportunity — full-time, fractional, or partnership — with teams doing interesting work in AI, data, or dev tooling.
+        <p class="text-text-body mb-6 max-w-prose">
+          I'm building my own ventures and selectively taking on consulting and advisory work. Open to the right opportunity  - full-time, fractional, or partnership  - with teams doing interesting work in AI, data, or dev tooling.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <a
@@ -104,6 +114,6 @@ const services = [
           </a>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </BaseLayout>
