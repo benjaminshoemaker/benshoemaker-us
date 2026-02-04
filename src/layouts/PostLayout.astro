@@ -35,28 +35,124 @@ const jsonLd = {
 ---
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd} ogType="article">
-  <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <header class="max-w-prose mb-8">
-      <div class="flex items-center gap-3 text-sm text-text-muted mb-2">
-        <time datetime={date.toISOString()}>
-          {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </time>
-        <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-accent-light text-accent-text">
-          {type}
-        </span>
-      </div>
-      <h1 class="text-3xl font-bold text-text-primary mb-4">{title}</h1>
-      {tags.length > 0 && (
-        <div class="flex flex-wrap gap-2">
-          {tags.map(tag => <TagBadge tag={tag} />)}
+  <article class="post-layout max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    {/* Meta sidebar + header row */}
+    <div class="post-grid">
+      {/* Left margin — metadata on large screens */}
+      <aside class="post-meta hidden lg:block">
+        <div class="sticky top-24 space-y-4">
+          <a href="/writing" class="inline-flex items-center gap-1 text-xs text-text-muted hover:text-accent transition-colors">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 12H5" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            All posts
+          </a>
+          <div class="pt-2 border-t border-border-light">
+            <time datetime={date.toISOString()} class="block text-sm text-text-muted">
+              {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+            <span class="inline-block mt-2 px-2 py-0.5 rounded text-xs font-medium bg-accent-light text-accent-text">
+              {type}
+            </span>
+          </div>
+          {tags.length > 0 && (
+            <div class="pt-2 border-t border-border-light">
+              <p class="text-xs text-text-muted mb-2">Topics</p>
+              <div class="flex flex-wrap gap-1.5">
+                {tags.map(tag => <TagBadge tag={tag} />)}
+              </div>
+            </div>
+          )}
+          <div class="pt-2 border-t border-border-light">
+            <p class="text-xs text-text-muted">
+              By <a href="/about" class="text-accent hover:text-accent-hover transition-colors">{siteConfig.author.name}</a>
+            </p>
+          </div>
         </div>
-      )}
-    </header>
-    <div class="prose prose-stone prose-lg max-w-prose">
-      <slot />
+      </aside>
+
+      {/* Main content column */}
+      <div class="post-content">
+        <header class="mb-10">
+          {/* Mobile-only meta (hidden on lg) */}
+          <div class="flex items-center gap-3 text-sm text-text-muted mb-3 lg:hidden">
+            <time datetime={date.toISOString()}>
+              {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-accent-light text-accent-text">
+              {type}
+            </span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4 leading-tight">{title}</h1>
+          {description && (
+            <p class="text-lg text-text-muted">{description}</p>
+          )}
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-4 lg:hidden">
+              {tags.map(tag => <TagBadge tag={tag} />)}
+            </div>
+          )}
+        </header>
+
+        <div class="post-prose prose prose-stone prose-lg">
+          <slot />
+        </div>
+
+        <footer class="mt-12 pt-6 border-t border-border text-sm text-text-muted lg:hidden">
+          Written by <a href="/about" class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{siteConfig.author.name}</a>
+        </footer>
+      </div>
     </div>
-    <footer class="max-w-prose mt-12 pt-6 border-t border-border text-sm text-text-muted">
-      Written by <a href="/about" class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{siteConfig.author.name}</a>
-    </footer>
   </article>
 </BaseLayout>
+
+<style>
+  /* Grid layout: left meta sidebar + prose content + right breakout space */
+  .post-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .post-grid {
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .post-grid {
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 4rem;
+    }
+  }
+
+  /* Prose column: readable width for text, breakout for media */
+  .post-prose {
+    max-width: 72ch;
+  }
+
+  /* Images break out wider than prose */
+  .post-prose :global(img) {
+    max-width: min(100%, 56rem);
+    width: 100%;
+    margin-left: 0;
+    border-radius: 0.5rem;
+  }
+
+  /* Code blocks break out wider */
+  .post-prose :global(pre) {
+    max-width: min(100%, 56rem);
+    border-radius: 0.5rem;
+  }
+
+  /* Blockquotes get a subtle breakout */
+  .post-prose :global(blockquote) {
+    max-width: min(100%, 50rem);
+    border-left-color: var(--color-accent);
+    border-left-width: 3px;
+    padding-left: 1.5rem;
+    font-style: normal;
+  }
+</style>

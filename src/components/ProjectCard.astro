@@ -13,6 +13,7 @@ interface Props {
 
 const { name, description, techStack, githubUrl, liveUrl, stars, lastUpdated } = Astro.props;
 const showMeta = (stars && stars > 0) || lastUpdated;
+const showLiveUrl = liveUrl && !liveUrl.includes('.vercel.app');
 ---
 
 <article class="p-6 bg-surface-raised border border-border rounded-lg">
@@ -62,7 +63,7 @@ const showMeta = (stars && stars > 0) || lastUpdated;
         GitHub
       </a>
     )}
-    {liveUrl && (
+    {showLiveUrl && (
       <a
         href={liveUrl}
         target="_blank"
@@ -74,7 +75,7 @@ const showMeta = (stars && stars > 0) || lastUpdated;
           <polyline points="15 3 21 3 21 9" />
           <line x1="10" y1="14" x2="21" y2="3" />
         </svg>
-        Live Demo
+        Live
       </a>
     )}
   </div>
