@@ -10,6 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.0.0",
     "@vercel/analytics": "^1.6.1",
     "astro": "^5.17.1"
