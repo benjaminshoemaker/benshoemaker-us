@@ -9,9 +9,10 @@ interface Props {
   type: 'essay' | 'note';
   tags: string[];
   description: string;
+  ogImage?: string;
 }
 
-const { title, date, type, tags, description } = Astro.props;
+const { title, date, type, tags, description, ogImage } = Astro.props;
 
 const postUrl = `${siteConfig.url}${Astro.url.pathname}`;
 const jsonLd = {
@@ -21,7 +22,7 @@ const jsonLd = {
   datePublished: date.toISOString(),
   url: postUrl,
   mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
-  image: `${siteConfig.url}${siteConfig.ogImage}`,
+  image: ogImage || `${siteConfig.url}${siteConfig.ogImage}`,
   author: {
     '@type': 'Person',
     name: siteConfig.author.name,
@@ -34,7 +35,7 @@ const jsonLd = {
 };
 ---
 
-<BaseLayout title={title} description={description} jsonLd={jsonLd} ogType="article">
+<BaseLayout title={title} description={description} jsonLd={jsonLd} ogType="article" ogImage={ogImage}>
   <article class="post-layout max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     {/* Meta sidebar + header row */}
     <div class="post-grid">

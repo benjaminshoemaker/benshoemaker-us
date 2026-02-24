@@ -13,7 +13,8 @@
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.0.0",
     "@vercel/analytics": "^1.6.1",
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "satori": "^0.19.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
