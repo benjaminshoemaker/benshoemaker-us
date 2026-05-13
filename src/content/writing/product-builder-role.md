@@ -19,7 +19,7 @@ A year earlier, as a PM, I would've called that approach reckless - wasting engi
 
 I [talked about this on a podcast](https://youtu.be/OirsRgdFC_8?t=309) a while back: "I think one version of it is people are doing both - you have to understand the product and then go implement it. That's always been engineers who think that way - as a PM you're like, 'I love this person, let no one talk to them and let them just build amazing things.' I think everyone could be that way now."
 
-I believed that then. I wrote on [my website](https://benshoemaker.us) that "AI tools have created a new kind of role. Not quite PM, not quite engineer. Someone who can hold product vision and demonstrate it by building." I said companies would start hiring for this explicitly soon.
+I believed that then. I wrote on [my website](https://benshoemaker.us/about) that "AI tools have created a new kind of role. Not quite PM, not quite engineer. Someone who can hold product vision and demonstrate it by building." I said companies would start hiring for this explicitly soon.
 
 They have.
 
@@ -31,7 +31,7 @@ Go look at job boards right now. Here's what you'll find:
 
 **Impiricus** is hiring an ["AI Solutions Builder"](https://job-boards.greenhouse.io/impiricus/jobs/5214167008) at $165-210K. The job explicitly requires you to "act as your own PM" - interview stakeholders, define scope, then build the thing yourself. They want someone who can take "vibe-coded" prototypes and turn them into production systems.
 
-**ShopMy** is hiring a ["Senior Product Builder"](https://job-boards.greenhouse.io/shopmy/jobs/5153099008) who "thinks in complete systems" and "ships solutions, not specs." **Hello Heart** wants a ["Senior AI Builder"](https://www.linkedin.com/jobs/view/4403537044/) - "the person who turns business problems into working AI solutions, fast." **Tiger Data** is hiring a ["Builder in Residence."](https://jobs.ashbyhq.com/TigerData/dbfd8ad3-fe92-4e1e-a133-263544ec42f2)
+**Owner.com** is hiring a ["Product Builder"](https://jobs.ashbyhq.com/owner/1912d8d8-b37f-4330-91ea-bb428d091322) - same title, different company, different vertical. **Tiger Data** is hiring a ["Builder in Residence."](https://jobs.ashbyhq.com/TigerData/dbfd8ad3-fe92-4e1e-a133-263544ec42f2)
 
 These aren't engineering roles with a product coat of paint. They explicitly require product instincts: user research, stakeholder management, roadmap thinking. Combined with the ability to build working software. One role, with both sides of the coin.
 
