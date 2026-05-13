@@ -27,11 +27,11 @@ They have.
 
 Go look at job boards right now. Here's what you'll find:
 
-**Knotch** is hiring a "Product Builder." The listing says it plainly: "The traditional lines between Product Management and Engineering are disappearing, and the speed of execution is everything." They want 5+ years in PM and 2-3 years as a software engineer. $160-180K.
+**Knotch** is hiring a ["Product Builder."](https://www.linkedin.com/jobs/view/4412317108/) The listing says it plainly: "The traditional lines between Product Management and Engineering are disappearing, and the speed of execution is everything." They want 5+ years in PM and 2-3 years as a software engineer. $160-180K.
 
-**Impiricus** is hiring an "AI Solutions Builder" at $165-210K. The job explicitly requires you to "act as your own PM" - interview stakeholders, define scope, then build the thing yourself. They want someone who can take "vibe-coded" prototypes and turn them into production systems.
+**Impiricus** is hiring an ["AI Solutions Builder"](https://job-boards.greenhouse.io/impiricus/jobs/5214167008) at $165-210K. The job explicitly requires you to "act as your own PM" - interview stakeholders, define scope, then build the thing yourself. They want someone who can take "vibe-coded" prototypes and turn them into production systems.
 
-**ShopMy** is hiring a "Senior Product Builder" who "thinks in complete systems" and "ships solutions, not specs." **Hello Heart** wants a "Senior AI Builder" - "the person who turns business problems into working AI solutions, fast." **Tiger Data** is hiring a "Builder in Residence."
+**ShopMy** is hiring a ["Senior Product Builder"](https://job-boards.greenhouse.io/shopmy/jobs/5153099008) who "thinks in complete systems" and "ships solutions, not specs." **Hello Heart** wants a ["Senior AI Builder"](https://www.linkedin.com/jobs/view/4403537044/) - "the person who turns business problems into working AI solutions, fast." **Tiger Data** is hiring a ["Builder in Residence."](https://jobs.ashbyhq.com/TigerData/dbfd8ad3-fe92-4e1e-a133-263544ec42f2)
 
 These aren't engineering roles with a product coat of paint. They explicitly require product instincts: user research, stakeholder management, roadmap thinking. Combined with the ability to build working software. One role, with both sides of the coin.
 
