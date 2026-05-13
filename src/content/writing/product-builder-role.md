@@ -1,5 +1,5 @@
 ---
-title: "The Product Builder Is Here"
+title: "The AI Builder"
 date: 2026-05-12
 type: essay
 tags: [ai-coding, product, careers]
