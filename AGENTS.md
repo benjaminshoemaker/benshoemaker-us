@@ -1,13 +1,6 @@
 # AGENTS.md — benshoemaker.us
 
-Project-wide workflow guidance for AI agents working in this project.
-
-## Instruction Hierarchy
-
-- This file is the durable, project-wide baseline.
-- Initial greenfield execution guidance lives in `plans/greenfield/AGENTS.md`.
-- Feature execution guidance lives in `features/<name>/AGENTS.md`.
-- When working in a scoped directory, read this file first, then the local `AGENTS.md` or `CLAUDE.md` in that directory.
+Project guidance for AI agents working on Ben Shoemaker's personal site.
 
 ## Project Context
 
@@ -15,43 +8,40 @@ Project-wide workflow guidance for AI agents working in this project.
 |-----|-------|
 | Language | TypeScript 5 |
 | Runtime | Node.js 20+ |
-| Framework | Astro v5 (static SSG) |
-| Styling | Tailwind CSS v4 (`@tailwindcss/vite`) |
-| Package Manager | npm |
-| Dev Server | `npm run dev` → `http://localhost:4321` (wait ~3s) |
-| Build | `npm run build` → `dist/` |
-| Type Check | `npx astro check` |
+| Framework | Astro v5, static site generation |
+| Styling | Tailwind CSS v4 via `@tailwindcss/vite` |
+| Package manager | npm |
+| Dev server | `npm run dev` at `http://localhost:4321` |
+| Build | `npm run build` |
+| Type check | `npx astro check` |
 
-No test runner — this is a static site. Verification uses BUILD, CODE, TYPE, and BROWSER checks.
+The site presents Ben's writing, projects, services, background, and current
+work. Published essays live in `src/content/writing/`; project and site data
+live in `src/data/`.
 
-## Testing Policy (Adapted for Static Site)
+## Working Rules
 
-This project has no test runner. Instead:
-- **BUILD verification** replaces unit tests — `npm run build` catches schema errors, missing imports, broken references
-- **CODE verification** uses grep/file checks on source files
-- **TYPE verification** uses `npx astro check`
-- **BROWSER verification** uses Lighthouse or manual inspection
+- Make focused changes that preserve the site's established visual language and
+  writing voice.
+- Treat content claims, career details, and external links as facts to verify,
+  not placeholders to invent.
+- Do not add dependencies unless the change genuinely needs them.
+- Keep drafts unpublished until Ben explicitly approves publication.
+- Preserve the project-specific writing skills under `.claude/skills/`; invoke
+  them only for the writing tasks described by their metadata.
+- Capture durable product context in normal project documentation or source,
+  not generated phase state, execution plans, or agent-specific logs.
 
-Never claim a criterion passes without running its Verify command.
+## Verification
 
-## Git Conventions
+This static site has no unit-test suite. Before claiming a code or content
+change is complete, run:
 
-- **Branch:** One per phase → `phase-{N}` (e.g., `phase-1`)
-- **Commits:** `task({id}): {description} [REQ-XXX]`
-- **Requirement traceability:** Always include REQ-ID in commit message
-
-## Guardrails
-
-- Make the smallest change that satisfies acceptance criteria
-- Don't duplicate files to work around import issues
-- Don't guess — report if you can't access something
-- Don't add dependencies not listed in plans/greenfield/TECHNICAL_SPEC.md
-- Read full error output before attempting fixes
-- Don't introduce new APIs without flagging for spec updates
-
-## Follow-Up Items
-
-If you discover issues outside current task scope, add to `TODOS.md`:
-```markdown
-- [ ] [{priority}] {description} (Source: task {id})
+```bash
+npm run build
+npx astro check
 ```
+
+For visual changes, also inspect the affected pages at desktop and mobile
+widths. For draft processing changes, verify the generated content rather than
+relying only on a successful command.

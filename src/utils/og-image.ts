@@ -235,7 +235,7 @@ export async function generateOgImage(options: {
     imageDataUri,
   );
 
-  const svg = await satori(element as React.ReactNode, {
+  const svg = await satori(element as Parameters<typeof satori>[0], {
     width: 1200,
     height: 630,
     fonts: [
