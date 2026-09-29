@@ -26,8 +26,11 @@ This profile is used by `/draft-post` to ground claims in Ben's actual experienc
 ## Core Beliefs (use these to inform perspective in drafts)
 
 - **Context and intelligence are the center of gravity** — Differentiation through better context, not better models
-- **Clarity over raw capability** — The bottleneck is clarity of intent, not model output. Specs should be primary artifacts
-- **The harness matters more than any single feature** — Orchestration, validation, error recovery beat raw capability
+- **Research before commitment** — Learn the domain, add personal context,
+  inspect alternatives, and test the real gap before choosing what to build
+- **Structure should earn its keep** — Use enough planning and verification for
+  the risk and uncertainty, then prototype when code will teach more than more
+  process
 - **Trust is the industry's #1 priority** — Gap between acceleration and trust needs to be owned
 - **Default to writing, assert rather than explore** — Conviction about things you've thought through; directness about things you haven't
 

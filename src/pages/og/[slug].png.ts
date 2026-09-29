@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ props }) => {
     articleImagePath: firstImage,
   });
 
-  return new Response(png, {
+  return new Response(Uint8Array.from(png), {
     headers: {
       'Content-Type': 'image/png',
       'Cache-Control': 'public, max-age=31536000, immutable',
