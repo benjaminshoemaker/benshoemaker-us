@@ -52,20 +52,16 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
-/* Scroll-triggered fade-up animation (scoped to .js so content shows if JS fails) */
-.js .fade-up {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.js .fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Consistent keyboard focus, including links inside article prose. */
+:where(a, button, summary):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 /* Reduced motion preference (REQ-022) */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transform: none !important; }
   *,
   *::before,
   *::after {

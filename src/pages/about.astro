@@ -3,89 +3,70 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { siteConfig } from '../data/site';
-import headshot from '../assets/images/headshot.png';
+import headshot from '../assets/images/LI_headshot.jpeg';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: siteConfig.author.name,
   url: siteConfig.url,
-  jobTitle: 'Product Leader & Technical Co-Founder',
-  sameAs: [
-    siteConfig.social.github,
-    siteConfig.social.linkedin,
-    siteConfig.social.twitter,
-  ],
+  jobTitle: 'Product Leader & Builder',
+  sameAs: [siteConfig.social.github, siteConfig.social.linkedin, siteConfig.social.twitter],
 };
 ---
 
-<BaseLayout title="About" description="Ben Shoemaker  - product leader, builder, and technical co-founder. 12 years at Indeed, now building AI-powered products." jsonLd={jsonLd}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <header class="mb-12">
-      <h1 class="text-3xl font-bold text-text-primary mb-4">About Me</h1>
-    </header>
+<BaseLayout title="About" description="Ben Shoemaker on product leadership, data, and building with AI. From employer products at Indeed to AI products and independent projects." jsonLd={jsonLd}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] gap-8 lg:gap-16">
+      <aside>
+        <div class="lg:sticky lg:top-12">
+          <Image src={headshot} alt="Ben Shoemaker" width={240} height={240} class="w-24 h-24 sm:w-40 sm:h-40 lg:w-60 lg:h-60 rounded-xl object-cover mb-5" />
+          <p class="text-lg font-semibold text-text-primary mb-3">Ben Shoemaker</p>
+          <SocialLinks />
+          <a href="/services" class="inline-flex py-3 mt-3 text-sm text-accent hover:underline">Working together &rarr;</a>
+        </div>
+      </aside>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
-      <div class="md:col-span-1">
-        <Image
-          src={headshot}
-          alt="Ben Shoemaker"
-          class="w-full max-w-xs mx-auto md:mx-0 rounded-lg"
-          width={320}
-          height={320}
-        />
-      </div>
+      <article class="min-w-0 max-w-[68ch]">
+        <header class="mb-10">
+          <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-5">About</h1>
+          <p class="text-xl sm:text-2xl leading-relaxed text-text-primary">I'm Ben. I work on products, data, and AI.</p>
+          <p class="mt-4 text-lg leading-relaxed">I've spent much of my career figuring out what people need, building teams and products around it, and working out whether we're actually helping. These days, a lot of that involves building with AI.</p>
+        </header>
 
-      <div class="md:col-span-2 prose prose-stone max-w-prose">
-        <p class="text-lg text-text-body">
-          I'm Ben Shoemaker. I build products with AI.
-        </p>
+        <div class="space-y-10 text-base sm:text-lg leading-relaxed">
+          <section aria-labelledby="background">
+            <h2 id="background" class="text-2xl font-semibold text-text-primary mb-4">From data to product</h2>
+            <div class="space-y-4">
+              <p>I spent about twelve years at Indeed. I started as a data analyst, then moved into product, building tools that helped employers manage candidates and hire people. That meant understanding how a small-business owner actually works, and making the software fit.</p>
+              <p>Later, I helped build and lead the Employer Data &amp; Analytics organization, partnering with engineering and managing product managers. We built customer-feedback systems, shared metrics, and data products that teams across Indeed used to make decisions. ASK'EM, our survey platform, and Connections, a company-level engagement metric, were two big pieces of that work.</p>
+              <p>That experience still shapes how I think. A metric is useful when it helps someone decide what to do. A platform is useful when other people can build on it without having to come through you.</p>
+            </div>
+          </section>
 
-        <h2 class="text-lg font-semibold text-text-primary mt-8 mb-3">Background</h2>
-        <p class="text-text-body">
-          For 12 years, I led data and analytics at Indeed  - creating company-wide success metrics used in board meetings, scaling SMB products 6x, managing organizations of 70+ people. I know how large enterprises work, how to build measurement systems that matter, and how to translate technical strategy into business outcomes.
-        </p>
-        <p class="text-text-body mt-4">
-          Then I got laid off in the middle of 2025 and started building.
-        </p>
+          <section aria-labelledby="ai-work">
+            <h2 id="ai-work" class="text-2xl font-semibold text-text-primary mb-4">Building with AI</h2>
+            <div class="space-y-4">
+              <p>More recently, I've worked on AI products in smaller teams. Through Zencohen, I worked on a consumer conversational-AI product, helping plan its launch and using early user behavior to understand where the experience was breaking down.</p>
+              <p>At Devplan, I led product work across customer discovery, self-serve onboarding, and AI quality. I worked with engineering to get the onboarding experience into production, then used AI tools to implement specific signup and setup improvements with engineering review. I also worked on how the AI generated and edited documents, testing changes against actual outputs and checking what users would see.</p>
+              <p>Alongside that, I've co-built a PropTech startup and made my own tools, including <a href="/projects#vibescaffold" class="text-accent underline underline-offset-4">VibeScaffold</a> and an <a href="/projects#ai-coding-project-base" class="text-accent underline underline-offset-4">open-source AI coding toolkit</a>. Building things myself gives me a way to test the ideas I write about.</p>
+            </div>
+          </section>
 
-        <h2 class="text-lg font-semibold text-text-primary mt-8 mb-3">What I've Built</h2>
-        <p class="text-text-body">
-          I launched VibeScaffold, a tool that turns rough product ideas into AI-ready specifications. It got 4,000+ users. I became technical co-founder of a stealth PropTech startup, building the full stack from scratch.
-        </p>
+          <section aria-labelledby="working-style">
+            <h2 id="working-style" class="text-2xl font-semibold text-text-primary mb-4">How I like to work</h2>
+            <div class="space-y-4">
+              <p>I think teams do their best work when they understand the outcome they're trying to reach and have room to figure out how to get there. A big part of product leadership is making that outcome clear, choosing what matters, and helping people work through the tradeoffs.</p>
+              <p>I like having something we can try and learn from early. That might mean talking through an idea with a customer, building a prototype, or making a small change we can put in front of someone. AI has made it practical for me to do much more of that directly.</p>
+              <p>I'm still apprehensive about where all of this is going. But on a personal level, these tools have unlocked me. I can try things I would've struggled to build before, and I keep finding reasons to rethink how I work. That's a lot of what <a href="/writing" class="text-accent underline underline-offset-4">I write about here</a>.</p>
+            </div>
+          </section>
+        </div>
 
-        <h2 class="text-lg font-semibold text-text-primary mt-8 mb-3">What I Believe</h2>
-        <p class="text-text-body">
-          Here's what I've learned: AI tools have created a new kind of role. Not quite PM, not quite engineer. Someone who can hold product vision and demonstrate it by building. Someone who can prototype an idea in a day that used to take a team a quarter. Someone who doesn't just write specs  - they produce working software.
-        </p>
-        <p class="text-text-body mt-4">
-          I think companies will start hiring for this explicitly soon. For now, I'm doing a blend: building my own ventures, advising startups, consulting on AI workflows, and staying open to the right opportunity.
-        </p>
-
-        <h2 class="text-lg font-semibold text-text-primary mt-8 mb-3">The Bigger Picture</h2>
-        <p class="text-text-body">
-          At a macro level, I'm apprehensive about where these tools are going - on a personal level, I have felt like these tools have unlocked me. I use to write and read code; now I manage the systems that produce it. If that sounds interesting, let's talk.
-        </p>
-      </div>
+        <footer class="mt-12 pt-6 border-t border-border">
+          <p class="text-text-body leading-relaxed">If something here overlaps with what you're thinking about, <a href={`mailto:${siteConfig.author.email}`} class="text-accent underline underline-offset-4">I'd like to hear from you</a>.</p>
+        </footer>
+      </article>
     </div>
-
-    <section class="border-t border-border pt-8">
-      <h2 class="text-xl font-semibold text-text-primary mb-4">Connect</h2>
-      <div class="flex flex-col gap-4">
-        <SocialLinks size="md" />
-        <p class="text-text-muted text-sm">
-          Or find me on{' '}
-          <a
-            href={siteConfig.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-accent hover:text-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          >
-            LinkedIn
-          </a>{' '}
-          for professional updates.
-        </p>
-      </div>
-    </section>
   </div>
 </BaseLayout>

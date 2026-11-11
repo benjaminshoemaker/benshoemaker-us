@@ -22,7 +22,7 @@ export const siteConfig = {
     { label: 'Home', href: '/' },
     { label: 'Writing', href: '/writing' },
     { label: 'Projects', href: '/projects' },
-    { label: 'Services', href: '/services' },
+    { label: 'Working together', href: '/services' },
     { label: 'About', href: '/about' },
   ],
 } as const;

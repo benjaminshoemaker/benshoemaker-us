@@ -23,4 +23,4 @@ It's a Git repo you clone – no packages to install, no services to configure. 
 
 If it's working well, you spend more time reviewing completed work than inspecting half-finished prompts.
 
-[https://benjaminshoemaker.github.io/ai\_coding\_project\_base/](https://benjaminshoemaker.github.io/ai_coding_project_base/)
+[https://github.com/benjaminshoemaker/ai\_coding\_project\_base](https://github.com/benjaminshoemaker/ai_coding_project_base)

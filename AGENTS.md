@@ -19,6 +19,17 @@ The site presents Ben's writing, projects, services, background, and current
 work. Published essays live in `src/content/writing/`; project and site data
 live in `src/data/`.
 
+## Purpose and Visual Direction
+
+This is Ben's public presence: ideas, projects, leadership, and approachable
+expertise in building with AI. Help readers understand his thinking and explore
+his work. Do not turn the homepage into a job application or résumé landing page.
+
+Preserve the project sidebar, warm neutral surfaces, amber accents, and Lora
+headings. Tokens live in `src/styles/global.css`. Favor actual product captures
+and published writing over decorative graphics or activity counts. Label demo
+data clearly. Keep career claims and new essays subject to Ben's review.
+
 ## Working Rules
 
 - Make focused changes that preserve the site's established visual language and

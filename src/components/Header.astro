@@ -16,6 +16,7 @@ const currentPath = Astro.url.pathname;
         {siteConfig.nav.map((item) => (
           <a
             href={item.href}
+            aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}
             class:list={[
               'text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
               currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
@@ -39,6 +40,7 @@ const currentPath = Astro.url.pathname;
           {siteConfig.nav.map((item) => (
             <a
               href={item.href}
+            aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}
               class:list={[
                 'block px-4 py-3 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
                 currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
@@ -56,6 +58,13 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
+  document.addEventListener('keydown', (event) => {
+    const menu = document.querySelector<HTMLDetailsElement>('header details');
+    if (event.key === 'Escape' && menu?.open) {
+      menu.open = false;
+      menu.querySelector('summary')?.focus();
+    }
+  });
   // Close mobile menu on outside tap
   document.addEventListener('click', (e) => {
     const details = document.querySelector('header details') as HTMLDetailsElement | null;

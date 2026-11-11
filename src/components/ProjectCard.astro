@@ -1,5 +1,8 @@
 ---
-import { formatRelativeTime } from '../lib/github';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import type { Project } from '../data/projects';
+import { formatUpdatedDate } from '../lib/github';
 
 interface Props {
   name: string;
@@ -9,14 +12,27 @@ interface Props {
   liveUrl?: string;
   stars?: number;
   lastUpdated?: string;
+  preview?: Project['preview'];
+  liveLabel?: string;
+  demoUrl?: string;
+  writingSlugs?: string[];
 }
 
-const { name, description, techStack, githubUrl, liveUrl, stars, lastUpdated } = Astro.props;
+const { name, description, techStack, githubUrl, liveUrl, stars, lastUpdated, preview, liveLabel, demoUrl, writingSlugs = [] } = Astro.props;
 const showMeta = (stars && stars > 0) || lastUpdated;
-const showLiveUrl = liveUrl && !liveUrl.includes('.vercel.app');
+const relatedWriting = (await getCollection('writing')).filter(post => !post.data.draft && writingSlugs.includes(post.id));
 ---
 
-<article class="project-card p-6 bg-surface-raised border border-border rounded-lg transition-all duration-200 active:scale-[0.98]">
+<article id={name.toLowerCase().replace(/[^a-z0-9]+/g, '-')} class="scroll-mt-8 project-card overflow-hidden flex flex-col bg-surface-raised border border-border rounded-lg transition-all duration-200">
+  {preview && (
+    <figure class="border-b border-border bg-surface-muted">
+      <a href={liveUrl || githubUrl} target="_blank" rel="noopener noreferrer" aria-label={`Explore ${name}`} class="block">
+        <Image src={preview.image} alt={preview.alt} widths={[480, 800, 1280]} sizes="(max-width: 767px) 100vw, 50vw" width={1280} height={800} format="webp" loading="lazy" class="w-full aspect-[8/5] object-cover" />
+      </a>
+      <figcaption class="px-6 py-2 text-xs text-text-muted">{preview.caption}</figcaption>
+    </figure>
+  )}
+  <div class="p-6 flex flex-col flex-1">
   <h3 class="text-lg font-semibold text-text-primary mb-2">{name}</h3>
   <p class="text-text-body text-sm mb-4">{description}</p>
 
@@ -35,7 +51,7 @@ const showLiveUrl = liveUrl && !liveUrl.includes('.vercel.app');
           <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z" />
           </svg>
-          {formatRelativeTime(lastUpdated)}
+          Updated {formatUpdatedDate(lastUpdated)}
         </span>
       )}
     </div>
@@ -49,7 +65,7 @@ const showLiveUrl = liveUrl && !liveUrl.includes('.vercel.app');
     ))}
   </div>
 
-  <div class="flex items-center gap-4">
+  <div class="flex flex-wrap items-center gap-2">
     {githubUrl && (
       <a
         href={githubUrl}
@@ -60,10 +76,10 @@ const showLiveUrl = liveUrl && !liveUrl.includes('.vercel.app');
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
         </svg>
-        GitHub
+        View source
       </a>
     )}
-    {showLiveUrl && (
+    {liveUrl && (
       <a
         href={liveUrl}
         target="_blank"
@@ -75,9 +91,19 @@ const showLiveUrl = liveUrl && !liveUrl.includes('.vercel.app');
           <polyline points="15 3 21 3 21 9" />
           <line x1="10" y1="14" x2="21" y2="3" />
         </svg>
-        Live
+        {liveLabel || 'Visit site'}
       </a>
     )}
+    {demoUrl && <a href={demoUrl} target="_blank" rel="noopener noreferrer" class="px-3 py-2 text-sm text-accent font-medium">Try demo &rarr;</a>}
+  </div>
+  {relatedWriting.length > 0 && (
+    <div class="mt-4 pt-4 border-t border-border">
+      <p class="text-xs text-text-muted mb-2">Related writing</p>
+      <ul class="space-y-2">
+        {relatedWriting.map(post => <li><a href={`/writing/${post.id}`} class="text-sm text-accent hover:underline">{post.data.title} &rarr;</a></li>)}
+      </ul>
+    </div>
+  )}
   </div>
 </article>
 

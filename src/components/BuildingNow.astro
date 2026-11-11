@@ -1,6 +1,6 @@
 ---
 import type { RecentRepo } from '../lib/github';
-import { formatRelativeTime } from '../lib/github';
+import { formatUpdatedDate } from '../lib/github';
 
 interface Props {
   repos: RecentRepo[] | null;
@@ -36,7 +36,7 @@ const { repos } = Astro.props;
             )}
           </div>
           <span class="shrink-0 text-xs text-text-muted whitespace-nowrap mt-0.5">
-            {formatRelativeTime(repo.pushedAt)}
+            {formatUpdatedDate(repo.pushedAt)}
           </span>
         </div>
       </a>

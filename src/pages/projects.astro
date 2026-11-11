@@ -34,8 +34,8 @@ const timelineProjects = projects
 
   <section class="py-12 bg-surface-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {projects.map(project => {
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[...projects].sort((a, b) => Number(b.featured) - Number(a.featured)).map(project => {
           const details = project.githubUrl ? repoDetails?.get(project.githubUrl) : undefined;
           return (
             <ProjectCard
@@ -46,6 +46,10 @@ const timelineProjects = projects
               liveUrl={project.liveUrl}
               stars={details?.stargazerCount}
               lastUpdated={details?.pushedAt}
+              preview={project.preview}
+              liveLabel={project.liveLabel}
+              demoUrl={project.demoUrl}
+              writingSlugs={project.writingSlugs}
             />
           );
         })}

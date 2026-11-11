@@ -73,7 +73,7 @@ My previous posts talked about this, but before agents write code, I write specs
 
 I think it's important to talk about this because when people hear, "I don't read the code," I think they believe I don't take the code seriously. I do. I just focus on the spec layer and the harness and the architecture. That's where my attention goes, and the code is an output of that process, not the thing I manage directly.
 
-### My Harness ([AI Coding Toolkit](https://benjaminshoemaker.github.io/ai_coding_project_base/))
+### My Harness ([AI Coding Toolkit](https://github.com/benjaminshoemaker/ai_coding_project_base))
 
 My harness is a toolkit of prompts, skills, hooks, and scripts that constrains how agents work. It's not a single file - it's 35\+ skills, structured agent instructions, and layered verification infrastructure. Here's what it actually enforces:
 

@@ -1,7 +1,7 @@
 ---
 import type { Project } from '../data/projects';
 import type { RepoInfo } from '../lib/github';
-import { formatRelativeTime } from '../lib/github';
+import { formatUpdatedDate } from '../lib/github';
 
 interface Props {
   projects: Project[];
@@ -24,11 +24,7 @@ function formatShortDate(dateString: string): string {
 }
 
 function getProjectHref(project: Project): string | undefined {
-  // Prefer custom domains over generic vercel.app URLs
-  if (project.liveUrl && !project.liveUrl.includes('.vercel.app')) {
-    return project.liveUrl;
-  }
-  return project.githubUrl || project.liveUrl;
+  return project.liveUrl || project.githubUrl;
 }
 ---
 
@@ -50,7 +46,7 @@ function getProjectHref(project: Project): string | undefined {
           const details = project.githubUrl ? repoDetails?.get(project.githubUrl) : undefined;
           const stars = details?.stargazerCount;
           const href = getProjectHref(project);
-          const hasCustomDomain = project.liveUrl && !project.liveUrl.includes('.vercel.app') && !project.liveUrl.includes('.github.io');
+          const hasLiveUrl = !!project.liveUrl;
 
           return (
             <div class:list={["timeline-item relative pl-5", index >= mobileLimit && "hidden lg:block"]}>
@@ -100,9 +96,9 @@ function getProjectHref(project: Project): string | undefined {
                   )}
                   <div class="flex items-center gap-3 text-[10px] text-text-muted">
                     {details?.pushedAt && (
-                      <span>Updated {formatRelativeTime(details.pushedAt)}</span>
+                      <span>Updated {formatUpdatedDate(details.pushedAt)}</span>
                     )}
-                    {hasCustomDomain && (
+                    {hasLiveUrl && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
@@ -114,7 +110,7 @@ function getProjectHref(project: Project): string | undefined {
                           <polyline points="15 3 21 3 21 9" />
                           <line x1="10" y1="14" x2="21" y2="3" />
                         </svg>
-                        Live
+                        {project.liveLabel || 'Visit site'}
                       </a>
                     )}
                   </div>

@@ -1,119 +1,77 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 import { siteConfig } from '../data/site';
 
-const services = [
+const areas = [
   {
-    title: 'AI Development & Tooling',
-    description: 'AI coding workflow design  - setting up teams to use Claude Code, Cursor, and Codex effectively. Specification design, prompt engineering, and agent orchestration. Rapid prototyping  - idea to working product in days, not months.',
+    title: 'Product direction and early development',
+    situation: 'You have an idea, but the first useful version is still unclear.',
+    description: "I can help figure out who it's for, what problem is worth solving, and what would make someone choose it. From there, we can build a prototype, get feedback, and decide what to take further. The scope often gets smaller as we understand the problem better.",
   },
   {
-    title: 'Data & Analytics',
-    description: "Analytics strategy and measurement frameworks  - I built Indeed's company-wide success metrics used in board meetings and 1,000+ A/B experiments per year. Data organization design  - scaled a 2-person team to 70+ as the analytics hub for Indeed's Employer business. Platform guidance on event pipelines, warehousing, governance, and data contracts.",
+    title: 'AI product quality',
+    situation: 'The demo works. Everyday use is more complicated.',
+    description: "I work through the failures people actually encounter: repetitive answers, missing context, confusing handoffs, or an AI saying it changed something when it didn't. We can define what good behavior looks like, test changes, and trace the problem through the product. Sometimes the fix is in a prompt. Sometimes it's elsewhere in the application.",
   },
   {
-    title: 'Product Leadership',
-    description: 'Fractional and advisory product leadership for startups. 0→1 product development from vision through launch. Build-vs-buy decisions, roadmapping, and prioritization.',
+    title: 'AI in the way your team works',
+    situation: 'You want to get beyond individual experiments with AI tools.',
+    description: "I can work with your team on coding workflows, internal tools, and agents that fit the work you're already doing. That includes deciding what to automate, where someone should review the result, and how we'll know whether the change is useful. I use these tools directly and build alongside the team.",
   },
   {
-    title: 'Hands-On Building',
-    description: "I don't just advise  - I build. Full-stack development for MVPs, prototypes, and internal tools. Currently building a PropTech platform as technical co-founder (Astro/React, Supabase, AI-powered insights).",
+    title: 'Measurement and product decisions',
+    situation: 'You have data, but it still feels hard to make a decision.',
+    description: "I've spent years on this problem, from company-wide metrics at Indeed to early product funnels. I can help define what matters, check what the data actually measures, and connect it with customer feedback. That might mean fixing instrumentation, simplifying a dashboard, or changing the question we're asking.",
   },
 ];
 ---
 
-<BaseLayout title="Services" description="Consulting, advising, and hands-on building for startups and enterprises.">
-  <section class="py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <header class="mb-12">
-        <h1 class="text-3xl font-bold text-text-primary mb-4">Services</h1>
-        <p class="text-lg text-text-muted max-w-prose">
-          Consulting, advising, and hands-on building for startups and enterprises.
-        </p>
-      </header>
-    </div>
-  </section>
+<BaseLayout title="Working together" description="Work with Ben Shoemaker on product direction, AI quality, team workflows, and measurement.">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <header class="max-w-[68ch] mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-5">Working together</h1>
+      <p class="text-xl leading-relaxed text-text-primary">I work with founders and product teams on what to build, how to build it, and how to tell whether it's working.</p>
+      <p class="text-lg leading-relaxed mt-4">I spent years on employer products and data platforms at Indeed. More recently, I've worked on AI products in small teams and built projects of my own. I can help think through the direction, get into the details, and build things with you.</p>
+    </header>
 
-  <section class="py-12 bg-surface-muted">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-xl font-semibold text-text-primary mb-6">What I Offer</h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {services.map(service => (
-          <ServiceCard title={service.title} description={service.description} />
+    <section aria-labelledby="where-i-help">
+      <h2 id="where-i-help" class="text-2xl font-semibold text-text-primary mb-6">Where I can help</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {areas.map(area => (
+          <article class="p-6 sm:p-8 bg-surface-raised border border-border rounded-xl">
+            <h3 class="text-xl font-semibold text-text-primary mb-3">{area.title}</h3>
+            <p class="text-base text-accent-text mb-4">{area.situation}</p>
+            <p class="text-text-body leading-relaxed">{area.description}</p>
+          </article>
         ))}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-xl font-semibold text-text-primary mb-4">Why Work With Me</h2>
-      <div class="prose prose-stone max-w-prose">
-        <p class="text-text-body">
-          I've spent 12 years in product leadership at Indeed  - creating metrics used in the boardroom, scaling orgs to 70+ people, running 1,000+ A/B experiments per year. I know how enterprises work.
-        </p>
-        <p class="text-text-body mt-4">
-          I've also built AI-powered products that people actually use  - VibeScaffold has 4,000+ users. I've been featured in AI Tinkerers Community Spotlights. I work at the intersection of product intuition and technical depth.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-12 bg-surface-muted">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-xl font-semibold text-text-primary mb-4">Who I Work With</h2>
-      <ul class="space-y-3 text-text-body max-w-prose">
-        <li class="flex items-start gap-2">
-          <span class="text-text-muted mt-1 shrink-0">-</span>
-          Startups building AI-native products or needing senior product thinking
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-text-muted mt-1 shrink-0">-</span>
-          Enterprises adopting AI development tools or modernizing data infrastructure
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-text-muted mt-1 shrink-0">-</span>
-          Founders who want to validate ideas fast before scaling engineering
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-2xl bg-accent-light border border-accent/20 p-6 sm:p-8">
-        <h2 class="text-xl font-semibold text-text-primary mb-4">Get in Touch</h2>
-        <p class="text-text-body mb-6 max-w-prose">
-          I'm building my own ventures and selectively taking on consulting and advisory work. Open to the right opportunity  - full-time, fractional, or partnership  - with teams doing interesting work in AI, data, or dev tooling.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a
-            href={`mailto:${siteConfig.author.email}`}
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          >
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            Send an Email
-          </a>
-          <a
-            href={siteConfig.author.calendarUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border bg-surface-raised text-text-primary font-medium rounded-lg hover:bg-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          >
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            Book a Call
-          </a>
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-10 lg:gap-16 mt-14 pt-10 border-t border-border">
+      <section aria-labelledby="start" class="max-w-[68ch]">
+        <h2 id="start" class="text-2xl font-semibold text-text-primary mb-4">How we'd start</h2>
+        <div class="space-y-4 text-lg leading-relaxed">
+          <p>I'd want to see what you're working on, who's using it, and where you're stuck. We should be able to name a decision to make or something useful to try before we turn it into a bigger project.</p>
+          <p>From there, we can work out where I can contribute: advising on a specific problem, building a prototype or tool, or taking on a broader piece of product work with your team.</p>
         </div>
-      </div>
+      </section>
+      <aside aria-labelledby="explore">
+        <h2 id="explore" class="text-xl font-semibold text-text-primary mb-4">A feel for my work</h2>
+        <ul class="space-y-4 text-base">
+          <li><a href="/projects#vibescaffold" class="text-accent hover:underline">VibeScaffold &rarr;</a><p class="text-sm text-text-muted mt-1">From a product idea to a specification.</p></li>
+          <li><a href="/writing/product-builder-role" class="text-accent hover:underline">The AI Builder &rarr;</a><p class="text-sm text-text-muted mt-1">My thinking on product work and building.</p></li>
+          <li><a href="/about" class="text-accent hover:underline">More about my background &rarr;</a></li>
+        </ul>
+      </aside>
     </div>
-  </section>
+
+    <section aria-labelledby="contact" class="mt-12 rounded-2xl bg-accent-light border border-accent/20 p-6 sm:p-8">
+      <h2 id="contact" class="text-2xl font-semibold text-text-primary mb-3">What are you working on?</h2>
+      <p class="text-text-body mb-6 max-w-prose leading-relaxed">Send me a little context about the problem and where you'd like help. We can start there.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href={`mailto:${siteConfig.author.email}`} class="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover transition-colors">Send an email</a>
+        <a href={siteConfig.author.calendarUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 border border-border bg-surface-raised text-text-primary font-medium rounded-lg hover:bg-white transition-colors">Book a call</a>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

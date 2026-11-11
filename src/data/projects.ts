@@ -1,3 +1,7 @@
+import type { ImageMetadata } from 'astro';
+import vibePreview from '../assets/projects/vibescaffold.png';
+import tallyPreview from '../assets/projects/tally.png';
+
 export interface Project {
   name: string;
   description: string;
@@ -5,6 +9,10 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   featured: boolean;
+  preview?: { image: ImageMetadata; alt: string; caption: string };
+  liveLabel?: string;
+  demoUrl?: string;
+  writingSlugs?: string[];
   startDate?: string;
 }
 
@@ -15,6 +23,8 @@ export const projects: Project[] = [
     techStack: ['TypeScript', 'Claude Code', 'Markdown'],
     githubUrl: 'https://github.com/benjaminshoemaker/vibecode_spec_generator',
     liveUrl: 'https://vibescaffold.dev/',
+    preview: { image: vibePreview, alt: 'VibeScaffold homepage introducing its specification workflow', caption: 'VibeScaffold · Public homepage' },
+    writingSlugs: ['vibe-scaffold-launch', 'ai-tinkerers-spotlight'],
     featured: true,
     startDate: '2025-11-17',
   },
@@ -23,7 +33,7 @@ export const projects: Project[] = [
     description: 'Structured prompt framework for building software products with AI coding assistants  - guides you through specification, technical design, and implementation planning.',
     techStack: ['Shell', 'Markdown'],
     githubUrl: 'https://github.com/benjaminshoemaker/ai_coding_project_base',
-    liveUrl: 'https://benjaminshoemaker.github.io/ai_coding_project_base/',
+    writingSlugs: ['ai-toolkit', 'in-defense-of-not-reading-the-code'],
     featured: false,
     startDate: '2025-12-28',
   },
@@ -33,6 +43,7 @@ export const projects: Project[] = [
     techStack: ['TypeScript', 'PostgreSQL'],
     githubUrl: 'https://github.com/benjaminshoemaker/notes_brain',
     liveUrl: 'https://notes-brain-web.vercel.app',
+    liveLabel: 'Open app · Sign in',
     featured: false,
     startDate: '2026-01-21',
   },
@@ -51,6 +62,7 @@ export const projects: Project[] = [
     techStack: ['TypeScript', 'AI Vision'],
     githubUrl: 'https://github.com/benjaminshoemaker/letgo',
     liveUrl: 'https://letgo-delta.vercel.app',
+    liveLabel: 'Open app · Sign in',
     featured: false,
     startDate: '2026-01-06',
   },
@@ -60,6 +72,8 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'TypeScript', 'PostgreSQL'],
     githubUrl: 'https://github.com/benjaminshoemaker/tally_analytics',
     liveUrl: 'https://usetally.xyz',
+    demoUrl: 'https://usetally.xyz/demo',
+    preview: { image: tallyPreview, alt: 'Tally homepage showing analytics setup with AI coding tools', caption: 'Tally Analytics · Public homepage' },
     featured: true,
     startDate: '2025-12-21',
   },
